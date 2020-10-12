@@ -11,19 +11,16 @@ class Header extends Component {
     this.changeOpened = this.changeOpened.bind(this);
   }
   state = {
-    navigationCondition: "navigation_block closed",
     opened: false,
   };
   changeOpened = function () {
-   // debugger;
+    // debugger;
     if (!this.state.opened) {
       this.setState({
-        navigationCondition: "navigation_block opened",
         opened: true,
       });
     } else {
       this.setState({
-        navigationCondition: "navigation_block closed",
         opened: false,
       });
     }
@@ -37,7 +34,11 @@ class Header extends Component {
             className="nav_icon"
             onClick={this.changeOpened}
           ></img>
-          <div className={this.state.navigationCondition}>
+          <div
+            className={`navigation_block ${
+              this.state.opened ? "opened" : "closed"
+            }`}
+          >
             <Link to="/home">Home</Link>
             <Link to="/friends">Friends</Link>
             <Link to="/other">Other</Link>
