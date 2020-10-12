@@ -15,7 +15,7 @@ class Registration extends Component {
     //});
     //sending info about account to redux to have PersonalCabinet
     // redirect to home
-    debugger;
+
     this.props.history.push("/home");
   }
   render() {
