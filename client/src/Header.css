@@ -19,7 +19,6 @@
   align-items: start;
   height: 100vh;
   padding: 20px 0px 0px 13px;
-  transition-duration: 0.4s;
   transition-timing-function: ease-in-out;
 }
 .navigation_block a {

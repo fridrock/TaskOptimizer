@@ -26,8 +26,8 @@ class App extends Component {
           />
           <Route history={history} path="/auth" component={Authorisation} />
           <Route history={history} path="/home" component={HomeFragment} />
-          <Redirect from="/" to="/home" />
-          <Redirect from="" to="/home" />
+          <Redirect from="/" to="/maingreating" />
+          <Redirect from="" to="/maingreating" />
         </Switch>
       </div>
     );

@@ -1,0 +1,17 @@
+{
+    "name":"first project",
+    "author":"fridrock(login)",
+    "columns": {
+        "do first task":{
+            "tasks":[
+                {"task":"do my job pls",
+            "done":false},
+            {"task":"do my job pls",
+                "done":false},
+                {"task":"do my job pls",
+                    "done":true}
+            ],
+            "progressbar":"14% done"
+        }
+    }
+}
