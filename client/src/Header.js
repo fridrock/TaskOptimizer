@@ -41,8 +41,7 @@ class Header extends Component {
           >
             <Link to="/home">Home</Link>
             <Link to="/friends">Friends</Link>
-            <Link to="/other">Other</Link>
-            <Link to="/">Other</Link>
+      
           </div>
           <div className="logo_brand">
             <img src={logo}></img>
