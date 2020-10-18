@@ -14,17 +14,15 @@ class Authorisation extends Component {
     };
   }
   checkValueFields() {
-    checkValueFields() {
-      let bol = false;
-      for (let key in this.state) {
-        if (this.state[key] === "") {
-          return false;
-        } else {
-          bol = true;
-        }
+    let bol = false;
+    for (let key in this.state) {
+      if (this.state[key] === "") {
+        return false;
+      } else {
+        bol = true;
       }
-      return bol;
     }
+    return bol;
   }
   handleChange(e) {
     const target = e.target;
