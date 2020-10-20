@@ -9,12 +9,41 @@ import HomeFragment from "./HomeFragment";
 import { store, addPlanCreator } from "./redux/store";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      opened: false,
+    };
+    this.props.history.listen((location, action) => {
+      this.changeOpened(true);
+      console.log("route changed");
+    });
+    this.changeOpened = this.changeOpened.bind(this);
+  }
+
+  changeOpened = function (close) {
+    let anotherValue = !this.state.opened;
+    console.log(close);
+    if (close) {
+      this.setState({
+        opened: false,
+      });
+    } else {
+      this.setState({
+        opened: anotherValue,
+      });
+    }
+  };
+
   render() {
     const { history } = this.props;
 
     return (
       <div className="App">
-        <Header></Header>
+        <Header
+          opened={this.state.opened}
+          changeOpened={this.changeOpened}
+        ></Header>
         <Switch>
           <Route
             history={history}

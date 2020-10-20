@@ -7,22 +7,8 @@ import { Link } from "react-router-dom";
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.changeOpened = this.changeOpened.bind(this);
   }
-  state = {
-    opened: false,
-  };
-  changeOpened = function () {
-    if (!this.state.opened) {
-      this.setState({
-        opened: true,
-      });
-    } else {
-      this.setState({
-        opened: false,
-      });
-    }
-  };
+
   render() {
     return (
       <div className="header_container">
@@ -30,11 +16,13 @@ class Header extends Component {
           <img
             src={navIcon}
             className="nav_icon"
-            onClick={this.changeOpened}
+            onClick={() => {
+              this.props.changeOpened(false);
+            }}
           ></img>
           <div
             id="navigation_block"
-            className={` ${this.state.opened ? "opened " : "closed"}`}
+            className={` ${this.props.opened ? "opened " : "closed"}`}
           >
             <Link to="/home">Home</Link>
             <Link to="/friends">Friends</Link>
