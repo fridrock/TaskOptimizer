@@ -1,7 +1,15 @@
-.registration_block {
-  width: 14%;
+.registration_block,
+.profile_container {
+  width: 12%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   margin-right: 50px;
+}
+.profile_container {
+  width: 5%;
+}
+.default_user_photo {
+  width: 30%;
+  height: auto;
 }

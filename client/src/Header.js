@@ -33,7 +33,10 @@ class Header extends Component {
           </div>
         </div>
 
-        <PersonalCabinet isRegistrated={false}></PersonalCabinet>
+        <PersonalCabinet
+          isRegistrated={this.props.LoggedIn}
+          userProfile={this.props.userProfile}
+        ></PersonalCabinet>
       </div>
     );
   }

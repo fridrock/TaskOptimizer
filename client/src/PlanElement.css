@@ -1,0 +1,18 @@
+.plan_container {
+  background-color: white;
+  width: 40vh;
+  height: 20vh;
+  position: relative;
+  top: 3vh;
+  left: 5vh;
+  background-color: red;
+}
+.closed {
+  width: 100%;
+  height: 50vh;
+  background-color: red;
+}
+.opened {
+  width: 90vh;
+  height: 35vh;
+}

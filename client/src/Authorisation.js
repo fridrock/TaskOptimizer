@@ -10,7 +10,7 @@ class Authorisation extends Component {
     this.state = {
       login_value: "",
       password_value: "",
-      error: "",
+      error: false,
     };
   }
   checkValueFields() {
@@ -22,6 +22,7 @@ class Authorisation extends Component {
         bol = true;
       }
     }
+
     return bol;
   }
   handleChange(e) {
@@ -42,7 +43,11 @@ class Authorisation extends Component {
       //});
       //sending info about account to redux to have PersonalCabinet
       // redirect to home
+      let answer = {
+        login: "fridrock",
+      };
 
+      this.props.dispatch(this.props.loggedInCreator(answer));
       this.props.history.push("/home");
     } else {
       this.setState({

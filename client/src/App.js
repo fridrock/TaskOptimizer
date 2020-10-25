@@ -6,7 +6,6 @@ import MainGreating from "./MainGreating";
 import Registration from "./Registration";
 import Authorisation from "./Authorisation";
 import HomeFragment from "./HomeFragment";
-import { store, addPlanCreator } from "./redux/store";
 
 class App extends Component {
   constructor(props) {
@@ -23,15 +22,16 @@ class App extends Component {
 
   changeOpened = function (close) {
     let anotherValue = !this.state.opened;
-    console.log(close);
-    if (close) {
-      this.setState({
-        opened: false,
-      });
-    } else {
-      this.setState({
-        opened: anotherValue,
-      });
+    if (this.props.state.LoggedIn) {
+      if (close) {
+        this.setState({
+          opened: false,
+        });
+      } else {
+        this.setState({
+          opened: anotherValue,
+        });
+      }
     }
   };
 
@@ -42,7 +42,9 @@ class App extends Component {
       <div className="App">
         <Header
           opened={this.state.opened}
+          LoggedIn={this.props.state.LoggedIn}
           changeOpened={this.changeOpened}
+          userProfile={this.props.state.userProfile}
         ></Header>
         <Switch>
           <Route
@@ -53,17 +55,34 @@ class App extends Component {
           <Route
             history={history}
             path="/registration"
-            component={Registration}
+            render={(props) => (
+              <Registration
+                dispatch={this.props.dispatch}
+                loggedInCreator={this.props.loggedInCreator}
+              ></Registration>
+            )}
           />
-          <Route history={history} path="/auth" component={Authorisation} />
+          <Route
+            history={history}
+            path="/auth"
+            render={(props) => (
+              <Authorisation
+                dispatch={this.props.dispatch}
+                loggedInCreator={this.props.loggedInCreator}
+              ></Authorisation>
+            )}
+          ></Route>
+
           <Route
             history={history}
             path="/home"
             render={(props) => (
               <HomeFragment
                 {...props}
-                dispatch={store.dispatch}
-                addPlanCreator={addPlanCreator}
+                plans={this.props.state.plans}
+                dispatch={this.props.dispatch}
+                lastPlanId={this.props.state.lastPlanId}
+                addPlanCreator={this.props.addPlanCreator}
               />
             )}
           />

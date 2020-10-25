@@ -5,19 +5,28 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { createBrowserHistory } from "history";
 import { BrowserRouter } from "react-router-dom";
+import store from "./redux/store";
+import { addPlanCreator, loggedInCreator } from "./redux/actionCreator";
 
 function renderTree() {
   const history = createBrowserHistory();
+
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter history={history}>
-        <App />
+        <App
+          state={store.getState()}
+          dispatch={store.dispatch}
+          addPlanCreator={addPlanCreator}
+          loggedInCreator={loggedInCreator}
+        />
       </BrowserRouter>
     </React.StrictMode>,
     document.getElementById("root")
   );
 }
 renderTree();
+store.subscribe(renderTree);
 export default renderTree;
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
