@@ -22,6 +22,8 @@ class PlanForm extends Component {
     let newPlan = {
       name: this.state.plan_name,
       id: this.props.lastPlanId,
+      lastColumnId: 0,
+      columns: [],
     };
 
     //TODO:convert json to object

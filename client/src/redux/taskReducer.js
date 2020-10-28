@@ -16,9 +16,33 @@ function tasksReduser(
       state.plans.push(action.plan);
       state.lastPlanId++;
       return state;
+    case "ADD_COLUMN":
+      state.plans.forEach((plan) => {
+        if (plan.id == action.planId) {
+          plan.columns.push(action.column);
+          plan.lastColumnId++;
+        }
+      });
+
+      return state;
+    case "ADD_CHECKBOX":
+      state.plans.forEach((plan) => {
+        if (plan.id == action.planId) {
+          plan.columns.forEach((column) => {
+            if (column.column_id == action.columnId) {
+              column.checkboxes.push(action.checkbox);
+              column.lastCheckBoxId++;
+            }
+          });
+        }
+      });
+
+      console.log(state);
+      return state;
 
     default:
       return state;
   }
 }
+
 export default tasksReduser;

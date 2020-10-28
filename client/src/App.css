@@ -20,3 +20,10 @@ input {
   outline: none;
   border: none;
 }
+.opened {
+  visibility: visible;
+}
+.closed {
+  height: 0;
+  display: none;
+}

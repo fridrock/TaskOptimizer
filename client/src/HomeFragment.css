@@ -11,3 +11,6 @@
 .create_button:hover {
   transform: scale(1.05);
 }
+.main {
+  padding-bottom: 50px;
+}

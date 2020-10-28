@@ -6,7 +6,12 @@ import * as serviceWorker from "./serviceWorker";
 import { createBrowserHistory } from "history";
 import { BrowserRouter } from "react-router-dom";
 import store from "./redux/store";
-import { addPlanCreator, loggedInCreator } from "./redux/actionCreator";
+import {
+  addPlanCreator,
+  loggedInCreator,
+  addColumnCreator,
+  addCheckBoxCreator,
+} from "./redux/actionCreator";
 
 function renderTree() {
   const history = createBrowserHistory();
@@ -19,12 +24,15 @@ function renderTree() {
           dispatch={store.dispatch}
           addPlanCreator={addPlanCreator}
           loggedInCreator={loggedInCreator}
+          addColumnCreator={addColumnCreator}
+          addCheckBoxCreator={addCheckBoxCreator}
         />
       </BrowserRouter>
     </React.StrictMode>,
     document.getElementById("root")
   );
 }
+console.log(store.getState());
 renderTree();
 store.subscribe(renderTree);
 export default renderTree;

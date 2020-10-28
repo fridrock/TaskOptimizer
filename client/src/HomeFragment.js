@@ -18,16 +18,23 @@ class HomeFragment extends Component {
     });
   }
   render() {
-    let planItems = [];
-    this.props.plans.map((el) => {
-      planItems.push(
-        <PlanElement key={el.id} id={el.id} planName={el.name}></PlanElement>
+    let planItems = this.props.plans.map((el) => {
+      return (
+        <PlanElement
+          visible={this.state.visible}
+          key={el.id}
+          plan={el}
+          addColumnCreator={this.props.addColumnCreator}
+          dispatch={this.props.dispatch}
+          addCheckBoxCreator={this.props.addCheckBoxCreator}
+        ></PlanElement>
       );
     });
+
     return (
       <div className="main">
         {planItems}
-        <PlanElement planName="dfasdfsd"></PlanElement>
+
         <div className="create_button_container">
           <button className="create_button" onClick={this.changeVisible}>
             Создать план

@@ -6,6 +6,7 @@ import MainGreating from "./MainGreating";
 import Registration from "./Registration";
 import Authorisation from "./Authorisation";
 import HomeFragment from "./HomeFragment";
+import { addCheckBoxCreator } from "./redux/actionCreator";
 
 class App extends Component {
   constructor(props) {
@@ -83,6 +84,8 @@ class App extends Component {
                 dispatch={this.props.dispatch}
                 lastPlanId={this.props.state.lastPlanId}
                 addPlanCreator={this.props.addPlanCreator}
+                addColumnCreator={this.props.addColumnCreator}
+                addCheckBoxCreator={this.props.addCheckBoxCreator}
               />
             )}
           />
