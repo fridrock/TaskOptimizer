@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./ColumnElement.css";
 import CheckBoxCreator from "./CheckBoxCreator";
+import CheckBox from "./CheckBox";
 
 class ColumnElement extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class ColumnElement extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.changeHasCreator = this.changeHasCreator.bind(this);
     this.changeCreatoreState = this.changeCreatoreState.bind(this);
+    this.updateCheckBox = this.updateCheckBox.bind(this);
   }
   changeHasCreator() {
     this.setState({
@@ -27,7 +29,14 @@ class ColumnElement extends Component {
       readyToSubmit: !this.state.readyToSubmit,
     });
   }
-
+  updateCheckBox(checkBoxId) {
+    let action = this.props.updateCheckBoxCreator(
+      this.props.planId,
+      this.props.column.column_id,
+      checkBoxId
+    );
+    this.props.dispatch(action);
+  }
   changeCreatoreState() {
     if (this.state.value != "" && this.state.hasCreator) {
       let action = this.props.addCheckBoxCreator(
@@ -36,9 +45,10 @@ class ColumnElement extends Component {
         {
           text: this.state.value,
           done: false,
-          id: this.props.column.lastCheckBoxId,
+          checkbox_id: this.props.column.lastCheckBoxId,
         }
       );
+
       this.props.dispatch(action);
 
       this.setState({
@@ -67,7 +77,15 @@ class ColumnElement extends Component {
     });
   }
   render() {
-    //{checkBoxes}
+    let checkBoxes = this.props.column.checkboxes.map((checkbox) => {
+      return (
+        <CheckBox
+          checkBoxText={checkbox.text}
+          updateCheckBox={this.updateCheckBox}
+          checkbox={checkbox}
+        ></CheckBox>
+      );
+    });
 
     return (
       <div className="column_container">
@@ -79,6 +97,7 @@ class ColumnElement extends Component {
           onClick={this.changeCreatoreState}
         ></button>
         <div className="checkbox_container">
+          {checkBoxes}
           <CheckBoxCreator
             opened={this.state.hasCreator}
             value={this.state.value}

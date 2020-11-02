@@ -24,6 +24,7 @@ class PlanForm extends Component {
       id: this.props.lastPlanId,
       lastColumnId: 0,
       columns: [],
+      doneProcent: 0,
     };
 
     //TODO:convert json to object
@@ -63,6 +64,7 @@ class PlanForm extends Component {
               name="plan_name"
               value={this.state.plan_name}
               onChange={this.handleChange}
+              autoComplete="off"
             ></input>
           </label>
           <input type="submit" value="Создать" className="submit_plan" />

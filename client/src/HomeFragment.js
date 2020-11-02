@@ -27,6 +27,7 @@ class HomeFragment extends Component {
           addColumnCreator={this.props.addColumnCreator}
           dispatch={this.props.dispatch}
           addCheckBoxCreator={this.props.addCheckBoxCreator}
+          updateCheckBoxCreator={this.props.updateCheckBoxCreator}
         ></PlanElement>
       );
     });

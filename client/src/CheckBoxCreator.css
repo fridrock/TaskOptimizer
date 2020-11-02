@@ -1,11 +1,12 @@
 .checkbox_creator_container {
   position: relative;
   width: 100%;
-  height: 4vh;
+  height: 2vh;
   display: flex;
   justify-content: center;
   align-items: center;
   border-bottom: 2px solid #448aff;
+  margin-top: 15px;
 }
 .checkbox_creator_input {
   width: 80%;

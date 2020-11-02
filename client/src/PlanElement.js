@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./PlanElement.css";
 import AddColumnForm from "./AddColumnForm";
 import ColumnElement from "./ColumnElement";
+import ProgressBar from "./ProgressBar";
 class PlanElement extends Component {
   constructor(props) {
     super(props);
@@ -40,6 +41,7 @@ class PlanElement extends Component {
           checkboxes={column.checkboxes}
           dispatch={this.props.dispatch}
           addCheckBoxCreator={this.props.addCheckBoxCreator}
+          updateCheckBoxCreator={this.props.updateCheckBoxCreator}
         ></ColumnElement>
       );
     });
@@ -48,6 +50,10 @@ class PlanElement extends Component {
         className={`plan_container ${this.state.opened ? `opened` : `hide`}`}
         onClick={this.state.opened ? null : this.changeOpened}
       >
+        <ProgressBar
+          opened={this.state.opened}
+          doneProcent={this.props.plan.doneProcent}
+        ></ProgressBar>
         <button
           className={`hide_button ${this.state.opened ? "" : "closed"}`}
           onClick={this.changeOpened}

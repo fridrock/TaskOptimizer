@@ -86,6 +86,7 @@ class App extends Component {
                 addPlanCreator={this.props.addPlanCreator}
                 addColumnCreator={this.props.addColumnCreator}
                 addCheckBoxCreator={this.props.addCheckBoxCreator}
+                updateCheckBoxCreator={this.props.updateCheckBoxCreator}
               />
             )}
           />

@@ -63,6 +63,7 @@ class AddColumnForm extends Component {
               name="column_name"
               value={this.state.column_name}
               onChange={this.handleChange}
+              autoComplete="off"
             ></input>
           </label>
           <input type="submit" value="Создать" className="submit_column" />

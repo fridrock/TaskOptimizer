@@ -25,7 +25,17 @@ let addCheckBoxCreator = function (planId, columnId, checkBox) {
     checkbox: checkBox,
   };
 };
+let updateCheckBoxCreator = function (planId, columnId, checkBoxId) {
+  return {
+    type: "UPDATE_CHECKBOX",
+    planId: planId,
+    columnId: columnId,
+    checkBoxId: checkBoxId,
+  };
+};
+
 export { addCheckBoxCreator };
 export { addPlanCreator };
 export { addColumnCreator };
 export { loggedInCreator };
+export { updateCheckBoxCreator };
