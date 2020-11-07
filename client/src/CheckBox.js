@@ -14,6 +14,7 @@ class CheckBox extends Component {
           type="checkbox"
           id="ch"
           name="checkbox"
+          defaultChecked={this.props.checkbox.done}
           onClick={() => {
             this.props.updateCheckBox(this.props.checkbox.checkbox_id);
           }}
