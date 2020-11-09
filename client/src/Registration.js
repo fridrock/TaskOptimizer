@@ -13,21 +13,35 @@ class Registration extends Component {
       login_value: "",
       password_value: "",
       repeat_password_value: "",
-      error: "",
+      error: false,
     };
   }
-
+  async sendPostQuery() {
+    try {
+      const data = {
+        name: this.state.name_value,
+        surname: this.state.surname_value,
+        login: this.state.login,
+        password: this.state.password_value,
+      };
+      let resolve = await fetch("api/users/registration", {
+        method: "post",
+        body: JSON.stringify(data),
+      });
+      let json = await resolve.text();
+      let result = json;
+      console.log(result);
+    } catch (e) {
+      console.log(e);
+    }
+    debugger;
+  }
   handleSubmit(e) {
     e.preventDefault();
     let hasEmptyStrings = this.checkValueFields();
     if (hasEmptyStrings) {
-      const data = new FormData(e.target);
-      //fetch("#", {
-      //method: "post",
-      //body: data,
-      //});
+      this.sendPostQuery();
       //sending info about account to redux to have PersonalCabinet
-      // redirect to home
 
       this.props.history.push("/home");
     } else {

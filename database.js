@@ -1,15 +1,25 @@
 const { Sequelize } = require("sequelize");
-const sequelize = new Sequelize({
+const sequelizeInstance = new Sequelize({
   dialect: "sqlite",
   host: "localhost",
   logging: console.log,
+  storage: "./database.sqlite",
 });
 async function connect() {
   try {
-    await sequelize.authenticate();
+    await sequelizeInstance.authenticate();
     console.log("connected to database");
   } catch (error) {
     console.log("error");
   }
 }
-module.exports = connect;
+async function createUsersDatabase() {
+  try {
+    await User.sync();
+    console.log("created user database");
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+module.exports = { connect, createUsersDatabase, sequelizeInstance };
