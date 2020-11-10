@@ -1,26 +1,42 @@
 const express = require("express");
 const app = express(); // create express app
+const bodyParser = require("body-parser");
+const jsonParser = bodyParser.json();
 const path = require("path");
 const { connect } = require("./database");
-const { createUsersDatabase, createUser } = require("./models/user");
+const { createUserDatabase, createUser } = require("./models/User");
 connect();
-createUsersDatabase();
+createUserDatabase();
 app.use(express.static(path.join(__dirname, "client/build")));
 app.use(express.static("public"));
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+app.use(bodyParser.json());
 app.get("/", (req, res) => {
   res.send("This is from express.js");
 });
-app.get("/api/users/registration", (req, res) => {
+app.post("/api/users/registrate", async (req, res) => {
+  //TODO: check if there is user with same login
   console.log(req.body);
-  createUser("", "", "", "");
-  res.json({ huesos: "huesos" });
-  console.log("query received");
-  //TODO: insert user in table
-  //TODO: get his generated id
-  //TODO: send it back to client
+  const user = await createUser(
+    req.body.name,
+    req.body.surname,
+    req.body.login,
+    req.body.password
+  );
+  const answer = {
+    id: user.id,
+    login: user.login,
+    name: user.name,
+    surname: user.surname,
+  };
+  res.json(JSON.stringify(answer));
 });
 // send react client with inself rounting
-app.get("*", (req, res) => {
+app.get("/", (req, res, next) => {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 

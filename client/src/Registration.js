@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Registration.css";
 import { withRouter } from "react-router-dom";
+
 class Registration extends Component {
   constructor(props) {
     super(props);
@@ -16,32 +17,41 @@ class Registration extends Component {
       error: false,
     };
   }
-  async sendPostQuery() {
+  async registrateUser() {
     try {
-      const data = {
+      const user = {
         name: this.state.name_value,
         surname: this.state.surname_value,
-        login: this.state.login,
+        login: this.state.login_value,
         password: this.state.password_value,
       };
-      let resolve = await fetch("api/users/registration", {
-        method: "post",
-        body: JSON.stringify(data),
+
+      const resolve = await fetch("/api/users/registrate", {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify(user),
       });
-      let json = await resolve.text();
-      let result = json;
-      console.log(result);
+
+      const json = await resolve.json();
+      const userProfile = JSON.parse(json);
+      const saveUserProfile = this.props.loggedInCreator(userProfile);
+      this.props.dispatch(saveUserProfile);
     } catch (e) {
       console.log(e);
     }
-    debugger;
   }
   handleSubmit(e) {
     e.preventDefault();
     let hasEmptyStrings = this.checkValueFields();
     if (hasEmptyStrings) {
-      this.sendPostQuery();
-      //sending info about account to redux to have PersonalCabinet
+      this.registrateUser();
 
       this.props.history.push("/home");
     } else {
@@ -59,6 +69,9 @@ class Registration extends Component {
       } else {
         bol = true;
       }
+    }
+    if (this.state.password_value != this.state.repeat_password_value) {
+      return false;
     }
     return bol;
   }
