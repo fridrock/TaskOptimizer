@@ -4,8 +4,9 @@ const bodyParser = require("body-parser");
 
 const path = require("path");
 const { connect } = require("./database");
-const { createUserDatabase, createUser } = require("./models/User");
+const { createUserDatabase, createUser, authUser } = require("./models/User");
 const { UserWithSameLogin } = require("./customErrors/UserWithSameLogin");
+const { noSuchUser } = require("./customErrors/noSuchUser");
 connect();
 createUserDatabase();
 app.use(express.static(path.join(__dirname, "client/build")));
@@ -18,6 +19,24 @@ app.use(
 app.use(bodyParser.json());
 app.get("/", (req, res) => {
   res.send("This is from express.js");
+});
+app.post("/api/users/auth", async (req, res) => {
+  try {
+    const user = await authUser(req.body.login, req.body.password);
+    const answer = {
+      id: user.id,
+      login: user.login,
+      name: user.name,
+      surname: user.surname,
+    };
+
+    res.json(JSON.stringify(answer));
+  } catch (err) {
+    console.log(err);
+    if (err instanceof noSuchUser) {
+      res.status(400).json(JSON.stringify(err));
+    }
+  }
 });
 app.post("/api/users/registrate", async (req, res) => {
   //TODO: check if there is user with same login
@@ -37,7 +56,6 @@ app.post("/api/users/registrate", async (req, res) => {
     };
     res.json(JSON.stringify(answer));
   } catch (err) {
-    console.log(err);
     if (err instanceof UserWithSameLogin) {
       res.status(400).json(JSON.stringify(err));
     }

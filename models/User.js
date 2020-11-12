@@ -1,4 +1,5 @@
 const { DataTypes, Model } = require("sequelize");
+const { noSuchUser } = require("../customErrors/noSuchUser.js");
 const { UserWithSameLogin } = require("../customErrors/UserWithSameLogin.js");
 const { sequelizeInstance } = require("../database.js");
 
@@ -32,6 +33,20 @@ async function createUserDatabase() {
   await User.sync();
   console.log("user database created");
 }
+async function authUser(login, password) {
+  const user = await User.findAll({
+    where: {
+      login: login,
+      password: password,
+    },
+    raw: true,
+  });
+  if (user.length > 0) {
+    return user[0];
+  } else {
+    throw new noSuchUser("wrong password or login");
+  }
+}
 async function createUser(name, surname, login, password) {
   const userWithSameLogin = await User.count({
     where: {
@@ -39,7 +54,7 @@ async function createUser(name, surname, login, password) {
     },
   });
 
-  if (userWithSameLogin > 0) {
+  if (userWithSameLogin) {
     throw new UserWithSameLogin(
       "there is user with the same login, try to switch it to another"
     );
@@ -54,4 +69,4 @@ async function createUser(name, surname, login, password) {
   return user;
 }
 
-module.exports = { User, createUserDatabase, createUser };
+module.exports = { User, createUserDatabase, createUser, authUser };
