@@ -1,4 +1,5 @@
 const { DataTypes, Model } = require("sequelize");
+const { UserWithSameLogin } = require("../customErrors/UserWithSameLogin.js");
 const { sequelizeInstance } = require("../database.js");
 
 class User extends Model {}
@@ -32,6 +33,17 @@ async function createUserDatabase() {
   console.log("user database created");
 }
 async function createUser(name, surname, login, password) {
+  const userWithSameLogin = await User.count({
+    where: {
+      login: login,
+    },
+  });
+
+  if (userWithSameLogin > 0) {
+    throw new UserWithSameLogin(
+      "there is user with the same login, try to switch it to another"
+    );
+  }
   const user = await User.create({
     name: name,
     surname: surname,

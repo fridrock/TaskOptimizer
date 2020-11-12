@@ -8,6 +8,7 @@ class Registration extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.checkValueFields = this.checkValueFields.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.registrateUser = this.registrateUser.bind(this);
     this.state = {
       name_value: "",
       surname_value: "",
@@ -18,42 +19,54 @@ class Registration extends Component {
     };
   }
   async registrateUser() {
-    try {
-      const user = {
-        name: this.state.name_value,
-        surname: this.state.surname_value,
-        login: this.state.login_value,
-        password: this.state.password_value,
-      };
+    const user = {
+      name: this.state.name_value,
+      surname: this.state.surname_value,
+      login: this.state.login_value,
+      password: this.state.password_value,
+    };
 
-      const resolve = await fetch("/api/users/registrate", {
-        method: "POST",
-        mode: "cors",
-        cache: "no-cache",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        redirect: "follow",
-        referrerPolicy: "no-referrer",
-        body: JSON.stringify(user),
-      });
-
+    const resolve = await fetch("/api/users/registrate", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(user),
+    });
+    console.log(resolve.status);
+    if (resolve.status == 200) {
       const json = await resolve.json();
       const userProfile = JSON.parse(json);
       const saveUserProfile = this.props.loggedInCreator(userProfile);
       this.props.dispatch(saveUserProfile);
-    } catch (e) {
-      console.log(e);
+      return new Promise((res, rej) => {
+        res();
+      });
+    } else if (resolve.status == 400) {
+      return new Promise((res, rej) => {
+        rej();
+      });
     }
   }
-  handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault();
     let hasEmptyStrings = this.checkValueFields();
     if (hasEmptyStrings) {
-      this.registrateUser();
-
-      this.props.history.push("/home");
+      try {
+        await this.registrateUser();
+        this.props.history.push("/home");
+      } catch (e) {
+        this.setState({
+          ...this.state,
+          login_value: "",
+          error: "Уже есть пользователь с таким логином",
+        });
+      }
     } else {
       this.setState({
         ...this.state,
