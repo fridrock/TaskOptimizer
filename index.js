@@ -43,8 +43,9 @@ app.post("/api/users/registrate", async (req, res) => {
     }
   }
 });
+
 // send react client with inself rounting
-app.get("/", (req, res, next) => {
+app.get("*", (req, res, next) => {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 
