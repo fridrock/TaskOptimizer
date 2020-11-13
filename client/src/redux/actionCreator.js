@@ -33,9 +33,14 @@ let updateCheckBoxCreator = function (planId, columnId, checkBoxId) {
     checkBoxId: checkBoxId,
   };
 };
-
+let logoutCreator = function () {
+  return {
+    type: "LOGOUT",
+  };
+};
 export { addCheckBoxCreator };
 export { addPlanCreator };
 export { addColumnCreator };
 export { loggedInCreator };
 export { updateCheckBoxCreator };
+export { logoutCreator };

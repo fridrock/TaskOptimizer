@@ -12,4 +12,41 @@
 .default_user_photo {
   width: 30%;
   height: auto;
+  margin: 0px 5px 0px 0px;
+}
+.profile_button {
+  min-width: 2vw;
+  width: auto;
+  height: 2vh;
+  margin: 0px 5px 0px 5px;
+  background-image: url("./img/baseline_accessible_black_18dp.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 1000;
+}
+#profile_menu {
+  min-width: 3vw;
+  min-height: 4vh;
+
+  height: auto;
+  position: absolute;
+  right: 1vw;
+  top: 5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: transform 0.5s cubic-bezier(0, 0.52, 0, 1);
+  transition-timing-function: ease-in-out;
+}
+.logout_button {
+  min-width: 1vw;
+  width: auto;
+  height: 1vh;
+}
+#profile_menu.closed {
+  transform: translate3d(0, -10vh, 0);
+}
+#profile_menu.opened {
+  transform: translate3d(0, 0vh, 0);
 }

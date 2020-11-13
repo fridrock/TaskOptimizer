@@ -42,7 +42,9 @@ class App extends Component {
     return (
       <div className="App">
         <Header
+          dispatch={this.props.dispatch}
           opened={this.state.opened}
+          logoutCreator={this.props.logoutCreator}
           LoggedIn={this.props.state.LoggedIn}
           changeOpened={this.changeOpened}
           userProfile={this.props.state.userProfile}

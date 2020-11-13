@@ -34,6 +34,8 @@ class Header extends Component {
         </div>
 
         <PersonalCabinet
+          dispatch={this.props.dispatch}
+          logoutCreator={this.props.logoutCreator}
           isRegistrated={this.props.LoggedIn}
           userProfile={this.props.userProfile}
         ></PersonalCabinet>

@@ -67,7 +67,9 @@ function tasksReduser(
       );
       console.log(checkbox.done);
       return state;
-
+    case "LOGOUT":
+      state.userProfile = {};
+      state.LoggedIn = false;
     default:
       return state;
   }

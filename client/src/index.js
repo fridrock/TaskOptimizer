@@ -12,6 +12,7 @@ import {
   addColumnCreator,
   addCheckBoxCreator,
   updateCheckBoxCreator,
+  logoutCreator,
 } from "./redux/actionCreator";
 
 function renderTree() {
@@ -28,6 +29,7 @@ function renderTree() {
           addColumnCreator={addColumnCreator}
           addCheckBoxCreator={addCheckBoxCreator}
           updateCheckBoxCreator={updateCheckBoxCreator}
+          logoutCreator={logoutCreator}
         />
       </BrowserRouter>
     </React.StrictMode>,
