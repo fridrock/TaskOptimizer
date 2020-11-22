@@ -14,12 +14,12 @@ class CheckBox extends Component {
           type="checkbox"
           id="ch"
           name="checkbox"
-          defaultChecked={this.props.checkbox.done}
+          defaultChecked={this.props.checkbox.checkBoxDone}
           onClick={() => {
-            this.props.updateCheckBox(this.props.checkbox.checkbox_id);
+            this.props.updateCheckBox(this.props.checkbox.checkBoxId);
           }}
         ></input>
-        <label for="checkbox">{this.props.checkBoxText}</label>
+        <label for="checkbox">{this.props.checkbox.checkBoxName}</label>
       </div>
     );
   }

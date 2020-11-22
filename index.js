@@ -1,14 +1,18 @@
 const express = require("express");
 const app = express(); // create express app
 const bodyParser = require("body-parser");
-
 const path = require("path");
+const { createDatabaseModels } = require("./databaseFunctions");
 const { connect } = require("./database");
-const { createUserDatabase, createUser, authUser } = require("./models/User");
+const { createUser, authUser } = require("./models/User");
+const { createPlan } = require("./models/Plan");
 const { UserWithSameLogin } = require("./customErrors/UserWithSameLogin");
 const { noSuchUser } = require("./customErrors/noSuchUser");
+const { createColumn } = require("./models/Column");
+const { createCheckBox, updateCheckBox } = require("./models/CheckBox");
 connect();
-createUserDatabase();
+createDatabaseModels();
+
 app.use(express.static(path.join(__dirname, "client/build")));
 app.use(express.static("public"));
 app.use(
@@ -20,11 +24,12 @@ app.use(bodyParser.json());
 app.get("/", (req, res) => {
   res.send("This is from express.js");
 });
+//creating answer object to delete some options and create child arrays
 app.post("/api/users/auth", async (req, res) => {
   try {
     const user = await authUser(req.body.login, req.body.password);
     const answer = {
-      id: user.id,
+      userId: user.userId,
       login: user.login,
       name: user.name,
       surname: user.surname,
@@ -38,8 +43,8 @@ app.post("/api/users/auth", async (req, res) => {
     }
   }
 });
+
 app.post("/api/users/registrate", async (req, res) => {
-  //TODO: check if there is user with same login
   try {
     console.log(req.body);
     const user = await createUser(
@@ -49,12 +54,12 @@ app.post("/api/users/registrate", async (req, res) => {
       req.body.password
     );
     const answer = {
-      id: user.id,
+      userId: user.userId,
       login: user.login,
       name: user.name,
       surname: user.surname,
     };
-    res.json(JSON.stringify(answer));
+    res.status(200).json(JSON.stringify(answer));
   } catch (err) {
     if (err instanceof UserWithSameLogin) {
       res.status(400).json(JSON.stringify(err));
@@ -62,6 +67,59 @@ app.post("/api/users/registrate", async (req, res) => {
   }
 });
 
+app.post("/api/plans/create", async (req, res) => {
+  try {
+    const plan = await createPlan(req.body.userId, req.body.planName);
+    const answer = {
+      planId: plan.planId,
+      userId: plan.userId,
+      planName: plan.planName,
+      columns: [],
+    };
+
+    res.json(JSON.stringify(answer));
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+app.post("/api/columns/create", async (req, res) => {
+  try {
+    const column = await createColumn(req.body);
+    const answer = {
+      planId: column.planId,
+      columnName: column.columnName,
+      columnId: column.columnId,
+      checkBoxes: [],
+    };
+    res.json(JSON.stringify(answer));
+  } catch (e) {
+    console.log(e.message);
+  }
+});
+
+app.post("/api/checkboxes/create", async (req, res) => {
+  try {
+    const checkbox = await createCheckBox(req.body);
+    const answer = {
+      columnId: checkbox.columnId,
+      checkBoxName: checkbox.checkBoxName,
+      checkBoxDone: checkbox.checkBoxDone,
+      checkBoxId: checkbox.checkBoxId,
+    };
+    res.json(JSON.stringify(answer));
+  } catch (e) {
+    console.log(e.message);
+  }
+});
+app.post("/api/checkboxes/update", async (req, res) => {
+  try {
+    await updateCheckBox(req.body);
+    res.status(200);
+  } catch (e) {
+    console.log(e.message);
+  }
+});
 // send react client with inself rounting
 app.get("*", (req, res, next) => {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));

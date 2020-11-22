@@ -10,26 +10,22 @@ let loggedInCreator = function (userProfile) {
     userProfile: userProfile,
   };
 };
-let addColumnCreator = function (planId, column) {
+let addColumnCreator = function (column) {
   return {
     type: "ADD_COLUMN",
     column: column,
-    planId: planId,
+    planId: column.planId,
   };
 };
-let addCheckBoxCreator = function (planId, columnId, checkBox) {
+let addCheckBoxCreator = function (checkBox) {
   return {
     type: "ADD_CHECKBOX",
-    planId: planId,
-    columnId: columnId,
     checkbox: checkBox,
   };
 };
-let updateCheckBoxCreator = function (planId, columnId, checkBoxId) {
+let updateCheckBoxCreator = function (checkBoxId) {
   return {
     type: "UPDATE_CHECKBOX",
-    planId: planId,
-    columnId: columnId,
     checkBoxId: checkBoxId,
   };
 };

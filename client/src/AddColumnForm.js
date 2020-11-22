@@ -7,30 +7,38 @@ class AddColumnForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.changeVisible = this.props.changeVisible;
     this.closeColumnForm = this.closeColumnForm.bind(this);
+    this.createColumnPost = this.createColumnPost.bind(this);
     this.state = {
       column_name: "",
     };
   }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    //TODO:submit form
-
-    //TODO:get column json
-
-    //this is fake id of plan in the future this id would be got from server
-    let newColumn = {
-      column_name: this.state.column_name,
-      column_id: this.props.lastColumnId,
-      checkboxes: [],
-      lastCheckBoxId: 0,
+  async createColumnPost() {
+    const column = {
+      columnName: this.state.column_name,
+      planId: this.props.planId,
     };
 
-    //TODO:convert json to object
-
-    let action = this.props.addColumnCreator(this.props.planId, newColumn);
-    this.props.dispatch(action);
-
+    const resolve = await fetch("/api/columns/create", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(column),
+    });
+    const json = await resolve.json();
+    const newColumn = await JSON.parse(json);
+    const saveColumnAction = this.props.addColumnCreator(newColumn);
+    this.props.dispatch(saveColumnAction);
+    console.log(newColumn);
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+    this.createColumnPost();
     this.closeColumnForm();
   }
   closeColumnForm() {

@@ -83,6 +83,7 @@ class App extends Component {
               <HomeFragment
                 {...props}
                 plans={this.props.state.plans}
+                userId={this.props.state.userProfile.userId}
                 dispatch={this.props.dispatch}
                 lastPlanId={this.props.state.lastPlanId}
                 addPlanCreator={this.props.addPlanCreator}

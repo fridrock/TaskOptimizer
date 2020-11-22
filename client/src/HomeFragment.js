@@ -44,7 +44,7 @@ class HomeFragment extends Component {
         <PlanForm
           visible={this.state.visible}
           changeVisible={this.changeVisible}
-          lastPlanId={this.props.lastPlanId}
+          userId={this.props.userId}
           dispatch={this.props.dispatch}
           addPlanCreator={this.props.addPlanCreator}
         ></PlanForm>

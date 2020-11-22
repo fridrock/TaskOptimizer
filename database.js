@@ -6,7 +6,7 @@ const sequelizeInstance = new Sequelize({
 });
 async function connect() {
   try {
-    await sequelize.authenticate();
+    await sequelizeInstance.authenticate();
     console.log("connected to database");
   } catch (error) {
     console.log("error");

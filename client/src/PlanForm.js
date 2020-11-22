@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+
 import "./PlanForm.css";
 class PlanForm extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.createPlanPost = this.createPlanPost.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.changeVisible = this.props.changeVisible;
     this.closePlanForm = this.closePlanForm.bind(this);
@@ -11,27 +13,35 @@ class PlanForm extends Component {
       plan_name: "",
     };
   }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    //TODO:submit form
-
-    //TODO:get plan json
-
-    //this is fake id of plan in the future this id would be got from server
-    let newPlan = {
-      name: this.state.plan_name,
-      id: this.props.lastPlanId,
-      lastColumnId: 0,
-      columns: [],
-      doneProcent: 0,
+  async createPlanPost() {
+    const plan = {
+      planName: this.state.plan_name,
+      userId: this.props.userId,
     };
 
-    //TODO:convert json to object
-
-    let action = this.props.addPlanCreator(newPlan);
+    const resolve = await fetch("/api/plans/create", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(plan),
+    });
+    const json = await resolve.json();
+    const newPlan = await JSON.parse(json);
+    newPlan.doneProcent = 0;
+    const action = this.props.addPlanCreator(newPlan);
     this.props.dispatch(action);
-
+    console.log(newPlan);
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+    //TODO: check if field is empty
+    this.createPlanPost();
     this.closePlanForm();
   }
   closePlanForm() {

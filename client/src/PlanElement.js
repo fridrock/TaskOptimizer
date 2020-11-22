@@ -36,7 +36,7 @@ class PlanElement extends Component {
     let columns = this.props.plan.columns.map((column) => {
       return (
         <ColumnElement
-          planId={this.props.plan.id}
+          planId={this.props.plan.planId}
           column={column}
           checkboxes={column.checkboxes}
           dispatch={this.props.dispatch}
@@ -59,7 +59,7 @@ class PlanElement extends Component {
           onClick={this.changeOpened}
         ></button>
 
-        <p>{this.props.plan.name}</p>
+        <p>{this.props.plan.planName}</p>
         <button
           className={`create_column_button ${
             this.state.opened ? "" : "closed"
@@ -76,7 +76,7 @@ class PlanElement extends Component {
 
         <AddColumnForm
           lastColumnId={this.props.plan.lastColumnId}
-          planId={this.props.plan.id}
+          planId={this.props.plan.planId}
           dispatch={this.props.dispatch}
           changeModalState={this.changeModalState}
           opened={this.state.modalOpened}

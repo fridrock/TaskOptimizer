@@ -16,7 +16,55 @@ class ColumnElement extends Component {
     this.changeHasCreator = this.changeHasCreator.bind(this);
     this.changeCreatoreState = this.changeCreatoreState.bind(this);
     this.updateCheckBox = this.updateCheckBox.bind(this);
+    this.createCheckBoxPost = this.createCheckBoxPost.bind(this);
+    this.updateCheckBoxPost = this.updateCheckBoxPost.bind(this);
   }
+  async updateCheckBoxPost(checkBoxId) {
+    const checkBoxIdJson = {
+      checkBoxId: checkBoxId,
+    };
+    const resolve = await fetch("/api/checkboxes/update", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(checkBoxIdJson),
+    });
+    const json = await resolve.json();
+    const answer = JSON.parse(json);
+    console.log(answer);
+  }
+  async createCheckBoxPost() {
+    const checkBox = {
+      checkBoxName: this.state.value,
+      checkBoxDone: false,
+      columnId: this.props.column.columnId,
+    };
+
+    const resolve = await fetch("/api/checkboxes/create", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(checkBox),
+    });
+    const json = await resolve.json();
+    const newCheckBox = await JSON.parse(json);
+    const saveCheckBoxAction = this.props.addCheckBoxCreator(newCheckBox);
+    this.props.dispatch(saveCheckBoxAction);
+    console.log(newCheckBox);
+  }
+  //TODO: refactor
   changeHasCreator() {
     this.setState({
       ...this.state,
@@ -30,27 +78,14 @@ class ColumnElement extends Component {
     });
   }
   updateCheckBox(checkBoxId) {
-    let action = this.props.updateCheckBoxCreator(
-      this.props.planId,
-      this.props.column.column_id,
-      checkBoxId
-    );
+    let action = this.props.updateCheckBoxCreator(checkBoxId);
     this.props.dispatch(action);
+    this.updateCheckBoxPost(checkBoxId);
   }
   changeCreatoreState() {
     if (this.state.value != "" && this.state.hasCreator) {
-      let action = this.props.addCheckBoxCreator(
-        this.props.planId,
-        this.props.column.column_id,
-        {
-          text: this.state.value,
-          done: false,
-          checkbox_id: this.props.column.lastCheckBoxId,
-        }
-      );
-
-      this.props.dispatch(action);
-
+      //
+      this.createCheckBoxPost();
       this.setState({
         hasCreator: false,
         readyToSubmit: false,
@@ -77,10 +112,9 @@ class ColumnElement extends Component {
     });
   }
   render() {
-    let checkBoxes = this.props.column.checkboxes.map((checkbox) => {
+    let checkBoxes = this.props.column.checkBoxes.map((checkbox) => {
       return (
         <CheckBox
-          checkBoxText={checkbox.text}
           updateCheckBox={this.updateCheckBox}
           checkbox={checkbox}
         ></CheckBox>
@@ -89,7 +123,7 @@ class ColumnElement extends Component {
 
     return (
       <div className="column_container">
-        <p className="column_name">{this.props.column.column_name}</p>
+        <p className="column_name">{this.props.column.columnName}</p>
         <button
           className={`add_checkbox_button ${
             this.state.readyToSubmit ? "submit" : "add"

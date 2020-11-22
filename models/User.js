@@ -6,7 +6,7 @@ const { sequelizeInstance } = require("../database.js");
 class User extends Model {}
 User.init(
   {
-    id: {
+    userId: {
       type: DataTypes.BIGINT,
       autoIncrement: true,
       allowNull: false,
