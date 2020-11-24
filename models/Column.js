@@ -34,4 +34,4 @@ async function createColumn(reqBody) {
   await column.save();
   return column;
 }
-module.exports = { createColumnDatabase, createColumn };
+module.exports = { Column, createColumnDatabase, createColumn };

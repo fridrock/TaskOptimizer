@@ -39,7 +39,6 @@ async function createCheckBox(reqBody) {
     checkBoxDone: reqBody.checkBoxDone,
   });
   await checkbox.save();
-  console.log(checkbox instanceof CheckBox);
   return checkbox;
 }
 async function updateCheckBox(reqBody) {
@@ -51,4 +50,9 @@ async function updateCheckBox(reqBody) {
     { where: { checkBoxId: reqBody.checkBoxId } }
   );
 }
-module.exports = { createCheckBoxDatabase, createCheckBox, updateCheckBox };
+module.exports = {
+  CheckBox,
+  createCheckBoxDatabase,
+  createCheckBox,
+  updateCheckBox,
+};

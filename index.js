@@ -2,7 +2,7 @@ const express = require("express");
 const app = express(); // create express app
 const bodyParser = require("body-parser");
 const path = require("path");
-const { createDatabaseModels } = require("./databaseFunctions");
+const { createDatabaseModels, browseAllData } = require("./databaseFunctions");
 const { connect } = require("./database");
 const { createUser, authUser } = require("./models/User");
 const { createPlan } = require("./models/Plan");
@@ -116,6 +116,14 @@ app.post("/api/checkboxes/update", async (req, res) => {
   try {
     await updateCheckBox(req.body);
     res.status(200);
+  } catch (e) {
+    console.log(e.message);
+  }
+});
+app.post("/api/plans/userdata", async (req, res) => {
+  try {
+    const plans = await browseAllData(req.body.userId);
+    res.status(200).json(JSON.stringify(plans));
   } catch (e) {
     console.log(e.message);
   }

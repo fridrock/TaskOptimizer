@@ -44,33 +44,6 @@ function tasksReduser(
       checkBox.checkBoxDone = !checkBox.checkBoxDone;
       //counting done procent
       stateFunctions.countDoneProcent(action.checkBoxId);
-      // let currentPlan = state.plans.find((plan) => {
-      //   return plan.id === action.planId;
-      // });
-      // let checkbox = currentPlan.columns
-      //   .find((column) => {
-      //     return column.column_id === action.columnId;
-      //   })
-      //   .checkboxes.find((checkbox) => {
-      //     return checkbox.checkbox_id === action.checkBoxId;
-      //   });
-      // checkbox.done = !checkbox.done;
-      // let checkBoxesCount = 0;
-      // let doneCheckBoxes = 0;
-
-      // currentPlan.columns.forEach((column) => {
-      //   checkBoxesCount += column.checkboxes.length;
-      //   column.checkboxes.forEach((checkbox) => {
-      //     if (checkbox.done) {
-      //       doneCheckBoxes++;
-      //     }
-      //   });
-      // });
-      // currentPlan.doneProcent = Math.round(
-      //   (doneCheckBoxes / checkBoxesCount) * 100
-      // );
-      // console.log(checkbox.done);
-
       return state;
     case "LOGOUT":
       state.userProfile = {};

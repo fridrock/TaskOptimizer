@@ -34,4 +34,4 @@ async function createPlan(userId, planName) {
   await plan.save();
   return plan;
 }
-module.exports = { createPlanDatabase, createPlan };
+module.exports = { createPlanDatabase, createPlan, Plan };
