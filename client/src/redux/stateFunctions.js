@@ -8,24 +8,42 @@ class StateFunctions {
     this.countDoneProcent = this.countDoneProcent.bind(this);
     this.findCheckBoxById = this.findCheckBoxById.bind(this);
   }
-  findPlanById() {
+  findPlanById(planId) {
+   return state.plans.find((plan)=>plan.planId === planId
+   );
+  }
+  findColumnById(columnId) {
    
+  for(let i=0;i<this.state.plans.length;i++){
+    let plan = this.state.plans[i];
+    for(let j=0;j<plan.columns.length;j++){
+      if(plan.columns[j].columnId === columnId){
+        return plan.columns[j];
+      }
+    }
   }
-  findColumnById() {
-    
-
   }
-  findCheckBoxById() {
-    
-    
+  countDoneProcent(checkBox) {
+    let column = this.findColumnById(checkBox.columnId);
+    let plan = this.findPlanByIdc(column.planId);
+    plan.doneProcent = Math.round(this.countDoneCheckBoxes(plan.planId)/this.countCheckBoxes(plan.planId)*100);
   }
-  countDoneProcent() {
+  countCheckBoxes(planId) {
+    let count;
+    let plan = this.findPlanById(planId);
+      plan.columns.forEach((column)=>{
+        count+=column.checkBoxes.length;
+      });
+    return count;
   }
-  countCheckBoxes() {
+  countDoneCheckBoxes(planId) {
+    let countDone;
+    let plan =  this.findPlanById(planId);
+    plan.columns.forEach((column)=>{
+        countDone+=column.checkBoxes.filter((checkBox)=>(checkBox.checkBoxDone == true) ||(checkBox.checkBoxDone == 1)).length;
+      });
     
+    return countDone;
   }
-  countDoneCheckBoxes() {
-    
-}
 }
 export { StateFunctions };

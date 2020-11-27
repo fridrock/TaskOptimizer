@@ -17,17 +17,17 @@ let addColumnCreator = function (column) {
     planId: column.planId,
   };
 };
-let addCheckBoxCreator = function (checkBox,column) {
+let addCheckBoxCreator = function (checkBox) {
   return {
     type: "ADD_CHECKBOX",
     checkBox: checkBox,
-    column:column
+    
   };
 };
-let updateCheckBoxCreator = function (checkBoxId) {
+let updateCheckBoxCreator = function (checkBox) {
   return {
     type: "UPDATE_CHECKBOX",
-    checkBoxId: checkBoxId,
+    checkBox: checkBox,
   };
 };
 let logoutCreator = function () {

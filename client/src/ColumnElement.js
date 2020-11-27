@@ -60,7 +60,7 @@ class ColumnElement extends Component {
     });
     const json = await resolve.json();
     const newCheckBox = await JSON.parse(json);
-    const saveCheckBoxAction = this.props.addCheckBoxCreator(newCheckBox,this.props.column);
+    const saveCheckBoxAction = this.props.addCheckBoxCreator(newCheckBox);
     this.props.dispatch(saveCheckBoxAction);
     console.log(newCheckBox);
   }
@@ -77,10 +77,10 @@ class ColumnElement extends Component {
       readyToSubmit: !this.state.readyToSubmit,
     });
   }
-  updateCheckBox(checkBoxId) {
-    let action = this.props.updateCheckBoxCreator(checkBoxId);
+  updateCheckBox(checkBox) {
+    let action = this.props.updateCheckBoxCreator(checkBox);
     this.props.dispatch(action);
-    this.updateCheckBoxPost(checkBoxId);
+    this.updateCheckBoxPost(checkBox.checkBoxId);
   }
   changeCreatoreState() {
     if (this.state.value != "" && this.state.hasCreator) {

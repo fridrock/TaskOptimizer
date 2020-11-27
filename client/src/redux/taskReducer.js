@@ -28,9 +28,14 @@ function tasksReduser(
       return state;
     case "ADD_CHECKBOX":
     //add code
+    let column =  stateFunctions.findColumnById(action.checkBox.columnId);
+    column.checkBoxes.push(action.checkBox);
+    stateFunctions.countDoneProcent(column.planId);
     //count done procent      
     case "UPDATE_CHECKBOX":
       //update code
+      action.checkBox.checkBoxDone =  !action.checkBox.checkBoxDone;
+      stateFunctions.countDoneProcent(action.checkBox);
      //count done procent code
     case "LOGOUT":
       state.userProfile = {};
