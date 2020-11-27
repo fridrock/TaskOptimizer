@@ -6,7 +6,6 @@ import MainGreating from "./MainGreating";
 import Registration from "./Registration";
 import Authorisation from "./Authorisation";
 import HomeFragment from "./HomeFragment";
-import { addCheckBoxCreator } from "./redux/actionCreator";
 
 class App extends Component {
   constructor(props) {
@@ -19,6 +18,7 @@ class App extends Component {
       console.log("route changed");
     });
     this.changeOpened = this.changeOpened.bind(this);
+    this.browseAllData = this.browseAllData.bind(this);
   }
 
   changeOpened = function (close) {
@@ -35,7 +35,33 @@ class App extends Component {
       }
     }
   };
+  async browseAllData(){
+    const userData = {
+      userId:this.props.state.userProfile.userId,
+    };
 
+    const resolve = await fetch("/api/plans/userdata", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(userData),
+    });
+    console.log(resolve.status);
+    if (resolve.status == 200) {
+      const json = await resolve.json();
+      const userData = JSON.parse(json);
+      const saveUserData = this.props.saveUserDataCreator(userData);
+      this.props.dispatch(saveUserData);
+      console.log(userData);
+    }
+  }
+  
   render() {
     const { history } = this.props;
 
@@ -72,6 +98,7 @@ class App extends Component {
               <Authorisation
                 dispatch={this.props.dispatch}
                 loggedInCreator={this.props.loggedInCreator}
+                browseAllData={this.browseAllData}
               ></Authorisation>
             )}
           ></Route>

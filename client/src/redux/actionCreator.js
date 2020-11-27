@@ -17,10 +17,11 @@ let addColumnCreator = function (column) {
     planId: column.planId,
   };
 };
-let addCheckBoxCreator = function (checkBox) {
+let addCheckBoxCreator = function (checkBox,column) {
   return {
     type: "ADD_CHECKBOX",
-    checkbox: checkBox,
+    checkBox: checkBox,
+    column:column
   };
 };
 let updateCheckBoxCreator = function (checkBoxId) {
@@ -34,9 +35,16 @@ let logoutCreator = function () {
     type: "LOGOUT",
   };
 };
+let saveUserDataCreator = function(userData){
+  return{
+    type:"SAVE_USER_DATA",
+    userData:userData
+  }
+}
 export { addCheckBoxCreator };
 export { addPlanCreator };
 export { addColumnCreator };
 export { loggedInCreator };
 export { updateCheckBoxCreator };
 export { logoutCreator };
+export{saveUserDataCreator};

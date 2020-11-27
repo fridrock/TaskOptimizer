@@ -122,6 +122,7 @@ app.post("/api/checkboxes/update", async (req, res) => {
 });
 app.post("/api/plans/userdata", async (req, res) => {
   try {
+    
     const plans = await browseAllData(req.body.userId);
     res.status(200).json(JSON.stringify(plans));
   } catch (e) {

@@ -9,18 +9,20 @@ async function createDatabaseModels() {
   createColumnDatabase();
   createCheckBoxDatabase();
 }
-async function browseAllData(userId) {
-  const plans = await findPlans(userId);
-  for (let i = 0; i < plans.length; i++) {
-    let plan = plan[i];
-    plan.columns = await findColumns(plan.planId);
-    for (let j = 0; j < plans[i].columns.length; j++) {
-      let column = plans[i].columns[j];
-      column.checkBoxes = await findCheckBoxes(column.columnId);
+
+  async function browseAllData(userId) {
+    const plans = await findPlans(userId);
+    for (let i = 0; i < plans.length; i++) {
+      plans[i].columns = await findColumns(plans[i].planId);
+      for (let j = 0; j < plans[i].columns.length; j++) {
+        let column = plans[i].columns[j];
+        column.checkBoxes = await findCheckBoxes(column.columnId);
+      }
     }
+    return plans;
   }
-  return plans;
-}
+  
+
 async function findPlans(userId) {
   const plans = await Plan.findAll({
     where: {

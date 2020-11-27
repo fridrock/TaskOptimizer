@@ -60,7 +60,7 @@ class ColumnElement extends Component {
     });
     const json = await resolve.json();
     const newCheckBox = await JSON.parse(json);
-    const saveCheckBoxAction = this.props.addCheckBoxCreator(newCheckBox);
+    const saveCheckBoxAction = this.props.addCheckBoxCreator(newCheckBox,this.props.column);
     this.props.dispatch(saveCheckBoxAction);
     console.log(newCheckBox);
   }

@@ -8,6 +8,7 @@ function tasksReduser(
   },
   action
 ) {
+  const stateFunctions = new StateFunctions(state);
   switch (action.type) {
     case "LOGGED_IN":
       state.LoggedIn = true;
@@ -26,28 +27,19 @@ function tasksReduser(
 
       return state;
     case "ADD_CHECKBOX":
-      state.plans.forEach((plan) => {
-        plan.columns.forEach((column) => {
-          if (column.columnId == action.checkbox.columnId) {
-            column.checkBoxes.push(action.checkbox);
-          }
-        });
-      });
-
-      console.log(state);
-      return state;
+    //add code
+    //count done procent      
     case "UPDATE_CHECKBOX":
-      const stateFunctions = new StateFunctions(state);
       //update code
-      const checkBox = stateFunctions.findCheckBoxById(action.checkBoxId);
-
-      checkBox.checkBoxDone = !checkBox.checkBoxDone;
-      //counting done procent
-      stateFunctions.countDoneProcent(action.checkBoxId);
-      return state;
+     //count done procent code
     case "LOGOUT":
       state.userProfile = {};
       state.LoggedIn = false;
+      state.plans = [];
+      return state;
+    case "SAVE_USER_DATA":
+      state.plans = action.userData;
+      return state;
     default:
       return state;
   }

@@ -65,6 +65,7 @@ class Authorisation extends Component {
     if (hasEmptyStrings) {
       try {
         await this.authUser();
+        await this.props.browseAllData();
         this.props.history.push("/home");
       } catch (e) {
         this.setState({

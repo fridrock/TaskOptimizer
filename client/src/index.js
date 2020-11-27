@@ -13,6 +13,7 @@ import {
   addCheckBoxCreator,
   updateCheckBoxCreator,
   logoutCreator,
+  saveUserDataCreator,
 } from "./redux/actionCreator";
 
 function renderTree() {
@@ -29,6 +30,7 @@ function renderTree() {
           addColumnCreator={addColumnCreator}
           addCheckBoxCreator={addCheckBoxCreator}
           updateCheckBoxCreator={updateCheckBoxCreator}
+          saveUserDataCreator = {saveUserDataCreator}
           logoutCreator={logoutCreator}
         />
       </BrowserRouter>
