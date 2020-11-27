@@ -1,4 +1,4 @@
-import { StateFunctions } from "./stateFunctions";
+
 
 function tasksReduser(
   state = {
@@ -8,7 +8,7 @@ function tasksReduser(
   },
   action
 ) {
-  const stateFunctions = new StateFunctions(state);
+ 
   switch (action.type) {
     case "LOGGED_IN":
       state.LoggedIn = true;
@@ -26,17 +26,49 @@ function tasksReduser(
       });
 
       return state;
-    case "ADD_CHECKBOX":
-    //add code
-    let column =  stateFunctions.findColumnById(action.checkBox.columnId);
-    column.checkBoxes.push(action.checkBox);
-    stateFunctions.countDoneProcent(column.planId);
-    //count done procent      
-    case "UPDATE_CHECKBOX":
-      //update code
-      action.checkBox.checkBoxDone =  !action.checkBox.checkBoxDone;
-      stateFunctions.countDoneProcent(action.checkBox);
-     //count done procent code
+      case "ADD_CHECKBOX":
+        state.plans.forEach((plan) => {
+          if (plan.planId == action.planId) {
+            plan.columns.forEach((column) => {
+              if (column.columnId == action.columnId) {
+                column.checkboxes.push(action.checkbox);
+                column.lastCheckBoxId++;
+              }
+            });
+          }
+        });
+  
+        console.log(state);
+        return state;
+      case "UPDATE_CHECKBOX":
+        let currentPlan = state.plans.find((plan) => {
+          return plan.id === action.planId;
+        });
+        let checkbox = currentPlan.columns
+          .find((column) => {
+            return column.column_id === action.columnId;
+          })
+          .checkboxes.find((checkbox) => {
+            return checkbox.checkbox_id === action.checkBoxId;
+          });
+        checkbox.done = !checkbox.done;
+        let checkBoxesCount = 0;
+        let doneCheckBoxes = 0;
+  
+        currentPlan.columns.forEach((column) => {
+          checkBoxesCount += column.checkboxes.length;
+          column.checkboxes.forEach((checkbox) => {
+            if (checkbox.done) {
+              doneCheckBoxes++;
+            }
+          });
+        });
+        currentPlan.doneProcent = Math.round(
+          (doneCheckBoxes / checkBoxesCount) * 100
+        );
+        console.log(checkbox.done);
+        return state;
+  
     case "LOGOUT":
       state.userProfile = {};
       state.LoggedIn = false;

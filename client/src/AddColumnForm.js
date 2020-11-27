@@ -34,7 +34,7 @@ class AddColumnForm extends Component {
     const newColumn = await JSON.parse(json);
     const saveColumnAction = this.props.addColumnCreator(newColumn);
     this.props.dispatch(saveColumnAction);
-    console.log(newColumn);
+    
   }
   handleSubmit(e) {
     e.preventDefault();

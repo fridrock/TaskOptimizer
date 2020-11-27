@@ -15,7 +15,7 @@ class App extends Component {
     };
     this.props.history.listen((location, action) => {
       this.changeOpened(true);
-      console.log("route changed");
+     
     });
     this.changeOpened = this.changeOpened.bind(this);
     this.browseAllData = this.browseAllData.bind(this);

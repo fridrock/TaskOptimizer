@@ -38,7 +38,7 @@ class Registration extends Component {
       referrerPolicy: "no-referrer",
       body: JSON.stringify(user),
     });
-    console.log(resolve.status);
+    
     if (resolve.status == 200) {
       const json = await resolve.json();
       const userProfile = JSON.parse(json);

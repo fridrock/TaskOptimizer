@@ -59,8 +59,10 @@ class ColumnElement extends Component {
       body: JSON.stringify(checkBox),
     });
     const json = await resolve.json();
-    const newCheckBox = await JSON.parse(json);
-    const saveCheckBoxAction = this.props.addCheckBoxCreator(newCheckBox);
+    const newCheckBox = await  JSON.parse(json)
+    console.log(newCheckBox);
+    console.log(this.props.planId);
+    const saveCheckBoxAction = this.props.addCheckBoxCreator(newCheckBox,this.props.planId);
     this.props.dispatch(saveCheckBoxAction);
     console.log(newCheckBox);
   }
@@ -78,7 +80,7 @@ class ColumnElement extends Component {
     });
   }
   updateCheckBox(checkBox) {
-    let action = this.props.updateCheckBoxCreator(checkBox);
+    let action = this.props.updateCheckBoxCreator(checkBox,this.props.planId);
     this.props.dispatch(action);
     this.updateCheckBoxPost(checkBox.checkBoxId);
   }

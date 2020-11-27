@@ -36,7 +36,7 @@ class PlanForm extends Component {
     newPlan.doneProcent = 0;
     const action = this.props.addPlanCreator(newPlan);
     this.props.dispatch(action);
-    console.log(newPlan);
+    
   }
   handleSubmit(e) {
     e.preventDefault();
