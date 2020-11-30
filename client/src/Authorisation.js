@@ -50,6 +50,7 @@ class Authorisation extends Component {
       const userProfile = JSON.parse(json);
       const saveUserProfile = this.props.loggedInCreator(userProfile);
       this.props.dispatch(saveUserProfile);
+      console.log(userProfile);
       return new Promise((res, rej) => {
         res();
       });

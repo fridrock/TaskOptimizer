@@ -1,3 +1,4 @@
+
 let addPlanCreator = function (plan) {
   return {
     type: "ADD_PLAN",
@@ -17,18 +18,20 @@ let addColumnCreator = function (column) {
     planId: column.planId,
   };
 };
-let addCheckBoxCreator = function (checkBox,planId) {
+let addCheckBoxCreator = function (checkBox,planId,columnId) {
   return {
     type: "ADD_CHECKBOX",
     checkBox: checkBox,
+    columnId:columnId,
     planId:planId,
   };
 };
-let updateCheckBoxCreator = function (checkBox,planId) {
+let updateCheckBoxCreator = function (checkBoxId,planId,columnId) {
   return {
     type: "UPDATE_CHECKBOX",
-    checkBox: checkBox,
-    planId:planId
+    checkBoxId: checkBoxId,
+    planId:planId,
+    columnId:columnId
   };
 };
 let logoutCreator = function () {

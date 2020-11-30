@@ -29,7 +29,7 @@ class Header extends Component {
           </div>
           <div className="logo_brand">
             <img src={logo}></img>
-            <p className="p_brand">Ladno</p>
+            <p className="p_brand">TaskOptimizer</p>
           </div>
         </div>
 

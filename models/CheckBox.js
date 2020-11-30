@@ -43,11 +43,10 @@ async function createCheckBox(reqBody) {
 }
 async function updateCheckBox(reqBody) {
   const checkBox = await CheckBox.findByPk(reqBody.checkBoxId);
-  await CheckBox.update(
+  await checkBox.update(
     {
       checkBoxDone: !checkBox.checkBoxDone,
-    },
-    { where: { checkBoxId: reqBody.checkBoxId } }
+    }
   );
 }
 module.exports = {

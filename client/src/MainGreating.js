@@ -46,7 +46,7 @@ class MainGreating extends Component {
           this.switchState(e, this.innerSide);
         }}
       >
-        <p>Добро пожаловать в Ladno</p>
+        <p>Добро пожаловать в TaskOptimizer</p>
         <div className="button_block">{this.innerSide}</div>
       </div>
     );
