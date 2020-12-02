@@ -115,7 +115,7 @@ app.post("/api/checkboxes/create", async (req, res) => {
 app.post("/api/checkboxes/update", async (req, res) => {
   try {
     await updateCheckBox(req.body);
-    res.status(200);
+    res.status(200).json('checkBoxUpdated');
   } catch (e) {
     console.log(e.message);
   }
