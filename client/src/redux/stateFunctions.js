@@ -3,15 +3,14 @@ class StateFunctions {
     this.state = state;
     this.findPlanById = this.findPlanById.bind(this);
     this.findColumnById = this.findColumnById.bind(this);
-    this.countCheckBoxes = this.countCheckBoxes.bind(this);
-    this.countDoneCheckBoxes = this.countDoneCheckBoxes.bind(this);
     this.countDoneProcent = this.countDoneProcent.bind(this);
     this.findCheckBoxById = this.findCheckBoxById.bind(this);
   }
   findPlanById(planId) {
-    this.state.plans.find((plan) => {
+    let currentPlan = this.state.plans.find((plan) => {
       return plan.planId === planId;
     });
+    return currentPlan;
   }
   findColumnById(planId, columnId) {
     let currentPlan = this.findPlanById(planId);
@@ -21,7 +20,7 @@ class StateFunctions {
     return currentColumn;
   }
   findCheckBoxById(planId, columnId, checkBoxId) {
-    let currentColumn = findColumnById(planId, columnId);
+    let currentColumn = this.findColumnById(planId, columnId);
     let currentCheckBox = currentColumn.checkBoxes.find((checkBox) => {
       return checkBox.checkBoxId === checkBoxId;
     });

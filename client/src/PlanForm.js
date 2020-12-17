@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-
 import "./PlanForm.css";
-import { calculateDoneProcent } from "./redux/taskReducer";
+
 class PlanForm extends Component {
   constructor(props) {
     super(props);
@@ -34,10 +33,9 @@ class PlanForm extends Component {
     });
     const json = await resolve.json();
     const newPlan = await JSON.parse(json);
-    calculateDoneProcent(newPlan);
+    newPlan.doneProcent = 0;
     const action = this.props.addPlanCreator(newPlan);
     this.props.dispatch(action);
-    
   }
   handleSubmit(e) {
     e.preventDefault();
