@@ -6,7 +6,7 @@ class VanillaHoverButton extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="vanilla_button_container">
         <button className="vanilla_hover_button">{this.props.link}</button>
       </div>
     );

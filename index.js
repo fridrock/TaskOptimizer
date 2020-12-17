@@ -21,9 +21,6 @@ app.use(
   })
 );
 app.use(bodyParser.json());
-app.get("/", (req, res) => {
-  res.send("This is from express.js");
-});
 //creating answer object to delete some options and create child arrays
 app.post("/api/users/auth", async (req, res) => {
   try {
@@ -46,7 +43,6 @@ app.post("/api/users/auth", async (req, res) => {
 
 app.post("/api/users/registrate", async (req, res) => {
   try {
-    console.log(req.body);
     const user = await createUser(
       req.body.name,
       req.body.surname,
@@ -115,21 +111,20 @@ app.post("/api/checkboxes/create", async (req, res) => {
 app.post("/api/checkboxes/update", async (req, res) => {
   try {
     await updateCheckBox(req.body);
-    res.status(200).json('checkBoxUpdated');
+    res.status(200).json("checkBoxUpdated");
   } catch (e) {
     console.log(e.message);
   }
 });
 app.post("/api/plans/userdata", async (req, res) => {
   try {
-    
     const plans = await browseAllData(req.body.userId);
     res.status(200).json(JSON.stringify(plans));
   } catch (e) {
     console.log(e.message);
   }
 });
-// send react client with inself rounting
+// send react client with itself rounting
 app.get("*", (req, res, next) => {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });

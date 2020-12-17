@@ -9,59 +9,41 @@ class StateFunctions {
     this.findCheckBoxById = this.findCheckBoxById.bind(this);
   }
   findPlanById(planId) {
-    const plan = this.state.plans.find((plan) => {
+    this.state.plans.find((plan) => {
       return plan.planId === planId;
     });
-    return plan;
   }
-  findColumnById(columnId) {
-    let column;
-    this.state.plans.forEach((plan) => {
-      column = plan.columns.find((column) => {
-        return column.columnId === columnId;
+  findColumnById(planId, columnId) {
+    let currentPlan = this.findPlanById(planId);
+    let currentColumn = currentPlan.columns.find((column) => {
+      return column.columnId === columnId;
+    });
+    return currentColumn;
+  }
+  findCheckBoxById(planId, columnId, checkBoxId) {
+    let currentColumn = findColumnById(planId, columnId);
+    let currentCheckBox = currentColumn.checkBoxes.find((checkBox) => {
+      return checkBox.checkBoxId === checkBoxId;
+    });
+    return currentCheckBox;
+  }
+  countDoneProcent(plan) {
+    let checkBoxesCount = 0;
+    let doneCheckBoxes = 0;
+    plan.columns.forEach((column) => {
+      checkBoxesCount += column.checkBoxes.length;
+      column.checkBoxes.forEach((checkbox) => {
+        if (checkbox.checkBoxDone || checkbox.checkBoxDone === 1) {
+          doneCheckBoxes++;
+        }
       });
     });
-    return column;
-  }
-  findCheckBoxById(checkBoxId) {
-    let checkBox = undefined;
-    this.state.plans.forEach((plan) => {
-      plan.columns.forEach((column) => {
-        checkBox = column.checkBoxes.find((checkBox) => {
-          return checkBox.checkBoxId === checkBoxId;
-        });
-      });
-    });
-    console.log(checkBox);
-    return checkBox;
-  }
-  countDoneProcent(checkBoxId) {
-    let checkBox = this.findCheckBoxById(checkBoxId);
-    let column = this.findColumnById(checkBox.columnId);
-    let plan = this.findPlanById(column.planId);
-    let checkBoxesCount = this.countCheckBoxes(plan);
-    let doneCheckBoxesCount = this.countDoneCheckBoxes(plan);
-    plan.doneProcent = Math.round(
-      (doneCheckBoxesCount / checkBoxesCount) * 100
-    );
-  }
-  countCheckBoxes(plan) {
-    let count = 0;
-    plan.columns.forEach((column) => {
-      count += column.checkBoxes.length;
-    });
-    console.log('count'+count);
-    return count;
-  }
-  countDoneCheckBoxes(plan) {
-    let doneCount = 0;
-    plan.columns.forEach((column) => {
-      doneCount += column.checkBoxes.filter((checkbox) => {
-        return (checkbox.checkBoxDone === true)||(checkbox.checkBoxDone ===1);
-      }).length;
-    });
-    console.log('done'+doneCount);
-    return doneCount;
+    if (doneCheckBoxes === 0) {
+      plan.doneProcent = 0;
+      console.log(plan.doneProcent);
+    } else {
+      plan.doneProcent = Math.round((doneCheckBoxes / checkBoxesCount) * 100);
+    }
   }
 }
 export { StateFunctions };

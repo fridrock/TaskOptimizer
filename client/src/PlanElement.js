@@ -32,6 +32,10 @@ class PlanElement extends Component {
       modalOpened: !this.state.modalOpened,
     });
   }
+  deletePlan() {
+    this.props.dispatch(this.props.deletePlanCreatror(this.props.planId));
+    //send query to server to delete plan
+  }
   render() {
     let columns = this.props.plan.columns.map((column) => {
       return (
@@ -54,10 +58,15 @@ class PlanElement extends Component {
           opened={this.state.opened}
           doneProcent={this.props.plan.doneProcent}
         ></ProgressBar>
-        <button
-          className={`hide_button ${this.state.opened ? "" : "closed"}`}
-          onClick={this.changeOpened}
-        ></button>
+        <div className="button_div">
+          <button
+            className={`hide_button ${this.state.opened ? "" : "closed"}`}
+            onClick={this.changeOpened}
+          ></button>
+          <button
+            className={`delete_button ${this.state.opened ? "" : "closed"}`}
+          ></button>
+        </div>
 
         <p>{this.props.plan.planName}</p>
         <button

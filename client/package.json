@@ -14,8 +14,7 @@
     "redux": "^4.0.5"
   },
   "scripts": {
-    "start-client": "react-scripts start",
-    "start": "npm run build &&(cd ..&& npm start)",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

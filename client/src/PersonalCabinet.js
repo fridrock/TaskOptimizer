@@ -57,7 +57,11 @@ class PersonalCabinet extends Component {
             }
           ></VanillaHoverButton>
           <VanillaHoverButton
-            link={<Link to="/auth">Авторизация</Link>}
+            link={
+              <Link className="link" to="/auth">
+                Авторизация
+              </Link>
+            }
           ></VanillaHoverButton>
         </div>
       );

@@ -1,6 +1,6 @@
 .main_greating_container {
   width: 100%;
-  height: 400px;
+  height: 30vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -13,8 +13,40 @@
 }
 .button_block {
   display: flex;
+  height: 5.5vh;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  width: 20%;
+  width: 25vw;
+}
+
+@media (max-width: 1300px) {
+  .button_block {
+    font-size: 0.9em;
+    width: 35vw;
+  }
+}
+@media (max-width: 800px) {
+  .button_block {
+    font-size: 0.8em;
+    width: 45vw;
+  }
+}
+@media (max-width: 650px) {
+  .button_block {
+    font-size: 0.6em;
+    width: 50vw;
+  }
+  .main_greating_container > p {
+    font-size: 20px;
+  }
+}
+@media (max-width: 350px) {
+  .button_block {
+    font-size: 0.6em;
+    width: 60vw;
+  }
+  .main_greating_container > p {
+    font-size: 15px;
+  }
 }
