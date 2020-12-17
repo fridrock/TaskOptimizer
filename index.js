@@ -5,7 +5,7 @@ const path = require("path");
 const { createDatabaseModels, browseAllData } = require("./databaseFunctions");
 const { connect } = require("./database");
 const { createUser, authUser } = require("./models/User");
-const { createPlan } = require("./models/Plan");
+const { createPlan, deletePlan } = require("./models/Plan");
 const { UserWithSameLogin } = require("./customErrors/UserWithSameLogin");
 const { noSuchUser } = require("./customErrors/noSuchUser");
 const { createColumn } = require("./models/Column");
@@ -74,6 +74,14 @@ app.post("/api/plans/create", async (req, res) => {
     };
 
     res.json(JSON.stringify(answer));
+  } catch (e) {
+    console.log(e);
+  }
+});
+app.post("/api/plans/delete", async (req, res) => {
+  try {
+    await deletePlan(req.body.planId);
+    res.json(JSON.stringify("succesfully deleted"));
   } catch (e) {
     console.log(e);
   }
