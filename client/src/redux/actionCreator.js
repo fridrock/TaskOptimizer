@@ -50,6 +50,13 @@ let deletePlanCreator = function (planId) {
     planId: planId,
   };
 };
+let deleteColumnCreator = function (planId, columnId) {
+  return {
+    type: "DELETE_COLUMN",
+    planId: planId,
+    columnId: columnId,
+  };
+};
 export { addCheckBoxCreator };
 export { addPlanCreator };
 export { addColumnCreator };
@@ -58,3 +65,4 @@ export { updateCheckBoxCreator };
 export { logoutCreator };
 export { saveUserDataCreator };
 export { deletePlanCreator };
+export { deleteColumnCreator };

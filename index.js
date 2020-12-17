@@ -8,7 +8,7 @@ const { createUser, authUser } = require("./models/User");
 const { createPlan, deletePlan } = require("./models/Plan");
 const { UserWithSameLogin } = require("./customErrors/UserWithSameLogin");
 const { noSuchUser } = require("./customErrors/noSuchUser");
-const { createColumn } = require("./models/Column");
+const { createColumn, deleteColumn } = require("./models/Column");
 const { createCheckBox, updateCheckBox } = require("./models/CheckBox");
 connect();
 createDatabaseModels();
@@ -97,6 +97,14 @@ app.post("/api/columns/create", async (req, res) => {
       checkBoxes: [],
     };
     res.json(JSON.stringify(answer));
+  } catch (e) {
+    console.log(e.message);
+  }
+});
+app.post("/api/columns/delete", async (req, res) => {
+  try {
+    await deleteColumn(req.body.columnId);
+    res.json(JSON.stringify("deleted column"));
   } catch (e) {
     console.log(e.message);
   }

@@ -3,111 +3,111 @@ import { StateFunctions } from "./stateFunctions";
 function tasksReduser(
   state = {
     plans: [
-      //   {
-      //     columns: [
-      //       {
-      //         checkBoxes: [
-      //           {
-      //             columnId: 1,
-      //             checkBoxName: "fdfdfd",
-      //             checkBoxDone: false,
-      //             checkBoxId: 2,
-      //           },
-      //           {
-      //             columnId: 1,
-      //             checkBoxName: "fdfd",
-      //             checkBoxDone: false,
-      //             checkBoxId: 3,
-      //           },
-      //           {
-      //             columnId: 1,
-      //             checkBoxName: "fdfdfd",
-      //             checkBoxDone: false,
-      //             checkBoxId: 4,
-      //           },
-      //           {
-      //             columnId: 1,
-      //             checkBoxName: "fdfdfd",
-      //             checkBoxDone: false,
-      //             checkBoxId: 5,
-      //           },
-      //           {
-      //             columnId: 1,
-      //             checkBoxName: "fdfdfd",
-      //             checkBoxDone: false,
-      //             checkBoxId: 6,
-      //           },
-      //           {
-      //             columnId: 1,
-      //             checkBoxName: "fdfdfd",
-      //             checkBoxDone: false,
-      //             checkBoxId: 7,
-      //           },
-      //           {
-      //             columnId: 1,
-      //             checkBoxName: "fdfdfd",
-      //             checkBoxDone: false,
-      //             checkBoxId: 8,
-      //           },
-      //           {
-      //             columnId: 1,
-      //             checkBoxName: "fdfdfdfd",
-      //             checkBoxDone: false,
-      //             checkBoxId: 9,
-      //           },
-      //           {
-      //             columnId: 1,
-      //             checkBoxName: "fdfdfdfd",
-      //             checkBoxDone: false,
-      //             checkBoxId: 10,
-      //           },
-      //           {
-      //             columnId: 1,
-      //             checkBoxName: "fdfdsfsdfs",
-      //             checkBoxDone: false,
-      //             checkBoxId: 11,
-      //           },
-      //           // {
-      //           //   columnId: 1,
-      //           //   checkBoxName: "fdfdfsdfs",
-      //           //   checkBoxDone: false,
-      //           //   checkBoxId: 12,
-      //           // },
-      //           // {
-      //           //   columnId: 1,
-      //           //   checkBoxName: "fdfdfd",
-      //           //   checkBoxDone: false,
-      //           //   checkBoxId: 13,
-      //           // },
-      //           // {
-      //           //   columnId: 1,
-      //           //   checkBoxName: "fdfdfdfd",
-      //           //   checkBoxDone: false,
-      //           //   checkBoxId: 14,
-      //           // },
-      //           // {
-      //           //   columnId: 1,
-      //           //   checkBoxName: "fdfdfdfd",
-      //           //   checkBoxDone: false,
-      //           //   checkBoxId: 15,
-      //           // },
-      //           // {
-      //           //   columnId: 1,
-      //           //   checkBoxName: "fdfdfdfd",
-      //           //   checkBoxDone: false,
-      //           //   checkBoxId: 16,
-      //           // },
-      //         ],
-      //         planId: 1,
-      //         columnId: 1,
-      //         columnName: "fd",
-      //       },
-      //     ],
-      //     doneProcent: 0,
-      //     planId: 1,
-      //     planName: "fd",
-      //     userId: 1,
-      //   },
+      // {
+      //   columns: [
+      //     {
+      //       checkBoxes: [
+      //         {
+      //           columnId: 1,
+      //           checkBoxName: "fdfdfd",
+      //           checkBoxDone: false,
+      //           checkBoxId: 2,
+      //         },
+      //         {
+      //           columnId: 1,
+      //           checkBoxName: "fdfd",
+      //           checkBoxDone: false,
+      //           checkBoxId: 3,
+      //         },
+      //         {
+      //           columnId: 1,
+      //           checkBoxName: "fdfdfd",
+      //           checkBoxDone: false,
+      //           checkBoxId: 4,
+      //         },
+      //         {
+      //           columnId: 1,
+      //           checkBoxName: "fdfdfd",
+      //           checkBoxDone: false,
+      //           checkBoxId: 5,
+      //         },
+      //         {
+      //           columnId: 1,
+      //           checkBoxName: "fdfdfd",
+      //           checkBoxDone: false,
+      //           checkBoxId: 6,
+      //         },
+      //         {
+      //           columnId: 1,
+      //           checkBoxName: "fdfdfd",
+      //           checkBoxDone: false,
+      //           checkBoxId: 7,
+      //         },
+      //         {
+      //           columnId: 1,
+      //           checkBoxName: "fdfdfd",
+      //           checkBoxDone: false,
+      //           checkBoxId: 8,
+      //         },
+      //         {
+      //           columnId: 1,
+      //           checkBoxName: "fdfdfdfd",
+      //           checkBoxDone: false,
+      //           checkBoxId: 9,
+      //         },
+      //         {
+      //           columnId: 1,
+      //           checkBoxName: "fdfdfdfd",
+      //           checkBoxDone: false,
+      //           checkBoxId: 10,
+      //         },
+      //         {
+      //           columnId: 1,
+      //           checkBoxName: "fdfdsfsdfs",
+      //           checkBoxDone: false,
+      //           checkBoxId: 11,
+      //         },
+      //         // {
+      //         //   columnId: 1,
+      //         //   checkBoxName: "fdfdfsdfs",
+      //         //   checkBoxDone: false,
+      //         //   checkBoxId: 12,
+      //         // },
+      //         // {
+      //         //   columnId: 1,
+      //         //   checkBoxName: "fdfdfd",
+      //         //   checkBoxDone: false,
+      //         //   checkBoxId: 13,
+      //         // },
+      //         // {
+      //         //   columnId: 1,
+      //         //   checkBoxName: "fdfdfdfd",
+      //         //   checkBoxDone: false,
+      //         //   checkBoxId: 14,
+      //         // },
+      //         // {
+      //         //   columnId: 1,
+      //         //   checkBoxName: "fdfdfdfd",
+      //         //   checkBoxDone: false,
+      //         //   checkBoxId: 15,
+      //         // },
+      //         // {
+      //         //   columnId: 1,
+      //         //   checkBoxName: "fdfdfdfd",
+      //         //   checkBoxDone: false,
+      //         //   checkBoxId: 16,
+      //         // },
+      //       ],
+      //       planId: 1,
+      //       columnId: 1,
+      //       columnName: "fd",
+      //     },
+      //   ],
+      //   doneProcent: 0,
+      //   planId: 1,
+      //   planName: "fd",
+      //   userId: 1,
+      // },
     ],
     LoggedIn: false,
     userProfile: {},
@@ -129,7 +129,7 @@ function tasksReduser(
       return state;
     case "DELETE_PLAN":
       currentPlan = stateFunctions.findPlanById(action.planId);
-      let index = state.plans.indexOf(currentPlan);
+      index = state.plans.indexOf(currentPlan);
       if (index > -1) {
         state.plans.splice(index, 1);
       }
@@ -138,6 +138,17 @@ function tasksReduser(
     case "ADD_COLUMN":
       currentPlan = stateFunctions.findPlanById(action.planId);
       currentPlan.columns.push(action.column);
+      return state;
+    case "DELETE_COLUMN":
+      currentPlan = stateFunctions.findPlanById(action.planId);
+      currentColumn = stateFunctions.findColumnById(
+        action.planId,
+        action.columnId
+      );
+      let index = currentPlan.columns.indexOf(currentColumn);
+      if (index > -1) {
+        currentPlan.columns.splice(index, 1);
+      }
       return state;
     case "ADD_CHECKBOX":
       currentPlan = stateFunctions.findPlanById(action.planId);

@@ -34,4 +34,11 @@ async function createColumn(reqBody) {
   await column.save();
   return column;
 }
-module.exports = { Column, createColumnDatabase, createColumn };
+async function deleteColumn(columnId) {
+  await Column.destroy({
+    where: {
+      columnId: columnId,
+    },
+  });
+}
+module.exports = { Column, createColumnDatabase, createColumn, deleteColumn };

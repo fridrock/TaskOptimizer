@@ -15,6 +15,7 @@ import {
   logoutCreator,
   saveUserDataCreator,
   deletePlanCreator,
+  deleteColumnCreator,
 } from "./redux/actionCreator";
 
 function renderTree() {
@@ -34,6 +35,7 @@ function renderTree() {
           saveUserDataCreator={saveUserDataCreator}
           logoutCreator={logoutCreator}
           deletePlanCreator={deletePlanCreator}
+          deleteColumnCreator={deleteColumnCreator}
         />
       </BrowserRouter>
     </React.StrictMode>,

@@ -12,6 +12,7 @@ class PlanElement extends Component {
     this.changeOpened = this.changeOpened.bind(this);
     this.changeModalState = this.changeModalState.bind(this);
     this.deletePlan = this.deletePlan.bind(this);
+    this.deltePlanPost = this.deletePlanPost.bind(this);
   }
   changeOpened(e) {
     if (this.props.visible) {
@@ -24,8 +25,29 @@ class PlanElement extends Component {
         opened: !this.state.opened,
       });
     }
-
     e.stopPropagation();
+  }
+  async deletePlanPost() {
+    const deleteQuery = {
+      planId: this.props.plan.planId,
+    };
+
+    const resolve = await fetch("/api/plans/delete", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(deleteQuery),
+    });
+    const json = await resolve.json();
+    const answer = await JSON.parse(json);
+    console.log(answer);
+    this.props.dispatch(this.props.deletePlanCreator(this.props.plan.planId));
   }
   changeModalState() {
     this.setState({
@@ -34,9 +56,10 @@ class PlanElement extends Component {
     });
   }
   deletePlan() {
-    this.props.dispatch(this.props.deletePlanCreator(this.props.plan.planId));
-    this.changeOpened();
-    //send query to server to delete plan
+    this.deletePlanPost();
+    this.setState({
+      opened: !this.state.opened,
+    });
   }
   render() {
     let columns = this.props.plan.columns.map((column) => {
@@ -48,6 +71,7 @@ class PlanElement extends Component {
           dispatch={this.props.dispatch}
           addCheckBoxCreator={this.props.addCheckBoxCreator}
           updateCheckBoxCreator={this.props.updateCheckBoxCreator}
+          deleteColumnCreator={this.props.deleteColumnCreator}
         ></ColumnElement>
       );
     });

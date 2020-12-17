@@ -34,4 +34,11 @@ async function createPlan(userId, planName) {
   await plan.save();
   return plan;
 }
-module.exports = { createPlanDatabase, createPlan, Plan };
+async function deletePlan(planId) {
+  await Plan.destroy({
+    where: {
+      planId: planId,
+    },
+  });
+}
+module.exports = { createPlanDatabase, createPlan, deletePlan, Plan };

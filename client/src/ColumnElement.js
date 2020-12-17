@@ -18,6 +18,7 @@ class ColumnElement extends Component {
     this.updateCheckBox = this.updateCheckBox.bind(this);
     this.createCheckBoxPost = this.createCheckBoxPost.bind(this);
     this.updateCheckBoxPost = this.updateCheckBoxPost.bind(this);
+    this.deleteColumnPost = this.deleteColumnPost.bind(this);
   }
   async updateCheckBoxPost(checkBoxId) {
     const checkBoxIdJson = {
@@ -59,10 +60,14 @@ class ColumnElement extends Component {
       body: JSON.stringify(checkBox),
     });
     const json = await resolve.json();
-    const newCheckBox = await  JSON.parse(json)
+    const newCheckBox = await JSON.parse(json);
     console.log(newCheckBox);
     console.log(this.props.planId);
-    const saveCheckBoxAction = this.props.addCheckBoxCreator(newCheckBox,this.props.planId,this.props.column.columnId);
+    const saveCheckBoxAction = this.props.addCheckBoxCreator(
+      newCheckBox,
+      this.props.planId,
+      this.props.column.columnId
+    );
     this.props.dispatch(saveCheckBoxAction);
     console.log(newCheckBox);
   }
@@ -80,7 +85,11 @@ class ColumnElement extends Component {
     });
   }
   updateCheckBox(checkBox) {
-    let action = this.props.updateCheckBoxCreator(checkBox.checkBoxId,this.props.planId,this.props.column.columnId);
+    let action = this.props.updateCheckBoxCreator(
+      checkBox.checkBoxId,
+      this.props.planId,
+      this.props.column.columnId
+    );
     this.props.dispatch(action);
     this.updateCheckBoxPost(checkBox.checkBoxId);
   }
@@ -113,6 +122,33 @@ class ColumnElement extends Component {
       value: value,
     });
   }
+  async deleteColumnPost() {
+    const deleteQuery = {
+      columnId: this.props.column.columnId,
+    };
+    const resolve = await fetch("/api/columns/delete", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(deleteQuery),
+    });
+    const json = await resolve.json();
+    const answer = await JSON.parse(json);
+    console.log(answer);
+    this.props.dispatch(
+      this.props.deleteColumnCreator(
+        this.props.planId,
+        this.props.column.columnId
+      )
+    );
+  }
+
   render() {
     let checkBoxes = this.props.column.checkBoxes.map((checkbox) => {
       return (
@@ -125,13 +161,21 @@ class ColumnElement extends Component {
 
     return (
       <div className="column_container">
-        <p className="column_name">{this.props.column.columnName}</p>
-        <button
-          className={`add_checkbox_button ${
-            this.state.readyToSubmit ? "submit" : "add"
-          }`}
-          onClick={this.changeCreatoreState}
-        ></button>
+        <div className="column_header">
+          <p className="column_name">{this.props.column.columnName}</p>
+          <div className="button_container">
+            <button
+              className={`add_checkbox_button ${
+                this.state.readyToSubmit ? "submit" : "add"
+              }`}
+              onClick={this.changeCreatoreState}
+            ></button>
+            <button
+              className="delete_button"
+              onClick={this.deleteColumnPost}
+            ></button>
+          </div>
+        </div>
         <div className="checkbox_container">
           {checkBoxes}
           <CheckBoxCreator

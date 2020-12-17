@@ -108,6 +108,7 @@ class App extends Component {
             render={(props) => (
               <HomeFragment
                 {...props}
+                deleteColumnCreator={this.props.deleteColumnCreator}
                 plans={this.props.state.plans}
                 userId={this.props.state.userProfile.userId}
                 dispatch={this.props.dispatch}
