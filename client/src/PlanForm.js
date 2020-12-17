@@ -11,6 +11,7 @@ class PlanForm extends Component {
     this.closePlanForm = this.closePlanForm.bind(this);
     this.state = {
       plan_name: "",
+      error: "",
     };
   }
   async createPlanPost() {
@@ -39,14 +40,21 @@ class PlanForm extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    //TODO: check if field is empty
-    this.createPlanPost();
-    this.closePlanForm();
+    if (this.state.plan_name === "") {
+      this.setState({
+        ...this.state,
+        error: "Напишите название плана",
+      });
+    } else {
+      this.createPlanPost();
+      this.closePlanForm();
+    }
   }
   closePlanForm() {
     this.props.changeVisible();
     this.setState({
       plan_name: "",
+      error: "",
     });
   }
   handleChange(e) {
@@ -76,7 +84,9 @@ class PlanForm extends Component {
               autoComplete="off"
             ></input>
           </label>
+
           <input type="submit" value="Создать" className="submit_plan" />
+          <p className="error">{this.state.error}</p>
         </form>
       </div>
     );

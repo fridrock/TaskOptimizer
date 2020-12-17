@@ -11,6 +11,7 @@ class PlanElement extends Component {
     };
     this.changeOpened = this.changeOpened.bind(this);
     this.changeModalState = this.changeModalState.bind(this);
+    this.deletePlan = this.deletePlan.bind(this);
   }
   changeOpened(e) {
     if (this.props.visible) {
@@ -33,7 +34,8 @@ class PlanElement extends Component {
     });
   }
   deletePlan() {
-    this.props.dispatch(this.props.deletePlanCreatror(this.props.planId));
+    this.props.dispatch(this.props.deletePlanCreator(this.props.plan.planId));
+    this.changeOpened();
     //send query to server to delete plan
   }
   render() {
@@ -65,6 +67,7 @@ class PlanElement extends Component {
           ></button>
           <button
             className={`delete_button ${this.state.opened ? "" : "closed"}`}
+            onClick={this.deletePlan}
           ></button>
         </div>
 

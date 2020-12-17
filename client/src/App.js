@@ -15,7 +15,6 @@ class App extends Component {
     };
     this.props.history.listen((location, action) => {
       this.changeOpened(true);
-     
     });
     this.changeOpened = this.changeOpened.bind(this);
     this.browseAllData = this.browseAllData.bind(this);
@@ -35,9 +34,9 @@ class App extends Component {
       }
     }
   };
-  async browseAllData(){
+  async browseAllData() {
     const userData = {
-      userId:this.props.state.userProfile.userId,
+      userId: this.props.state.userProfile.userId,
     };
 
     const resolve = await fetch("/api/plans/userdata", {
@@ -61,7 +60,7 @@ class App extends Component {
       console.log(userData);
     }
   }
-  
+
   render() {
     const { history } = this.props;
 
@@ -117,6 +116,7 @@ class App extends Component {
                 addColumnCreator={this.props.addColumnCreator}
                 addCheckBoxCreator={this.props.addCheckBoxCreator}
                 updateCheckBoxCreator={this.props.updateCheckBoxCreator}
+                deletePlanCreator={this.props.deletePlanCreator}
               />
             )}
           />

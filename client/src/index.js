@@ -14,6 +14,7 @@ import {
   updateCheckBoxCreator,
   logoutCreator,
   saveUserDataCreator,
+  deletePlanCreator,
 } from "./redux/actionCreator";
 
 function renderTree() {
@@ -30,8 +31,9 @@ function renderTree() {
           addColumnCreator={addColumnCreator}
           addCheckBoxCreator={addCheckBoxCreator}
           updateCheckBoxCreator={updateCheckBoxCreator}
-          saveUserDataCreator = {saveUserDataCreator}
+          saveUserDataCreator={saveUserDataCreator}
           logoutCreator={logoutCreator}
+          deletePlanCreator={deletePlanCreator}
         />
       </BrowserRouter>
     </React.StrictMode>,

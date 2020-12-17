@@ -28,6 +28,7 @@ class HomeFragment extends Component {
           dispatch={this.props.dispatch}
           addCheckBoxCreator={this.props.addCheckBoxCreator}
           updateCheckBoxCreator={this.props.updateCheckBoxCreator}
+          deletePlanCreator={this.props.deletePlanCreator}
         ></PlanElement>
       );
     });

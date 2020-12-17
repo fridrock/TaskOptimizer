@@ -1,7 +1,7 @@
 .plan_form_container {
   width: 35%;
   position: absolute;
-  height: 30vh;
+  height: 34vh;
   top: 35vh;
   left: 32.5%;
   z-index: 1000;
@@ -54,4 +54,7 @@
 .submit_plan:hover {
   transform: scale(1.05);
   cursor: pointer;
+}
+.error {
+  color: red;
 }

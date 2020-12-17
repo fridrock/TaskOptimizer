@@ -127,6 +127,14 @@ function tasksReduser(
     case "ADD_PLAN":
       state.plans.push(action.plan);
       return state;
+    case "DELETE_PLAN":
+      currentPlan = stateFunctions.findPlanById(action.planId);
+      let index = state.plans.indexOf(currentPlan);
+      if (index > -1) {
+        state.plans.splice(index, 1);
+      }
+      console.log(state.plans);
+      return state;
     case "ADD_COLUMN":
       currentPlan = stateFunctions.findPlanById(action.planId);
       currentPlan.columns.push(action.column);
