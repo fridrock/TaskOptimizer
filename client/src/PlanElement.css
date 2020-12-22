@@ -5,10 +5,10 @@
   left: 5vh;
   margin-top: 3vh;
   color: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 10vh 1fr;
+  align-content: center;
   transition-property: all;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
@@ -16,76 +16,119 @@
 }
 .plan_container.hide {
   width: 30vw;
-  height: 20vh;
+  min-height: 20vh;
   position: relative;
 }
 .plan_container.opened {
   width: 85vw;
-  justify-content: start;
-  height: 85vh;
+  min-height: 85vh;
+}
+.plan_container.hide .planName {
+  position: relative;
+  top: 70%;
+  left: 5%;
+}
+.plan_container.hide .progress_bar_container {
+  position: relative;
+  top: 50%;
+  left: 5%;
 }
 .plan_container p {
-  position: relative;
-  width: 70%;
-  height: auto;
+  font-size: 30px;
+  font-weight: 500;
+  margin: 15px 0px 0px 0px;
   text-transform: uppercase;
-  font-size: 40px;
-  padding: 2px;
-  text-align: center;
-  font-weight: 600;
 }
-.plan_container.opened p {
-  margin-top: -0.5%;
-}
-.button_div {
-  position: relative;
-  top: 5%;
-  left: 45%;
-  height: 3%;
-  width: 5%;
-  display: flex;
-  justify-content: start;
+.planElementHeader {
+  width: 100%;
+  height: 10vh;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-row-end: 2;
+  display: grid;
+  grid-template-columns: 1fr 10%;
+  grid-template-rows: 1fr;
   align-items: center;
 }
-.hide_button {
-  width: 45%;
+.planElementHeaderContent {
+  width: 100%;
   height: 100%;
-  margin-top: 15%;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+.planElementHeaderContent p {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  text-align: center;
+}
+.progress_bar_container {
+  grid-row-start: 2;
+  grid-column-start: 1;
+  grid-row-end: 3;
+  grid-column-end: 2;
+  align-self: center;
+}
+.button_div {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  width: 90%;
+  height: 80%;
+  display: grid;
+  grid-row-gap: 10px;
+  align-self: flex-end;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+.hide_button {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 3;
+  grid-column-end: 4;
   background-size: contain;
   background-image: url("./img/hide_button.png");
   background-repeat: no-repeat;
 }
+.delete_button {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  background-size: contain;
+  background-image: url("./img/delete_icon.png");
+  background-repeat: no-repeat;
+}
 .create_column_button {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 4;
   color: white;
-  position: relative;
-  top: -5%;
-  left: 42%;
-  height: auto;
-  width: 10%;
+  font-size: 15px;
   background-color: #448aff;
-  padding: 5px 10px 5px 10px;
+  padding: 0;
   border: 2px solid#448AFF;
   border-radius: 20px;
   transition-duration: 0.3s;
+  padding: 3px 10px 3px 10px;
 }
 .create_column_button:hover {
   transform: scale(1.05);
 }
 .columns_container {
-  width: 80%;
-  height: auto;
-  margin-left: -15%;
   display: flex;
+  padding: 0px;
   justify-content: start;
-  align-items: center;
+  align-items: start;
+  flex-wrap: wrap;
 }
-.delete_button {
-  width: 45%;
-  height: 100%;
-  background-size: contain;
-  background-image: url("./img/delete_icon.png");
-  background-repeat: no-repeat;
-}
+
 .delete_button:hover {
   background-image: url("./img/delete_icon_red.png");
 }

@@ -2,7 +2,7 @@ body {
   background-color: #000;
   background-repeat: no-repeat;
   background-size: 100vw auto;
-
+  overflow-x: hidden;
   color: white;
 }
 .particles_container {

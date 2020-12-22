@@ -1,9 +1,7 @@
-.progress_bar_container {
-  position: relative;
-  top: 12vh;
-}
 .progress_bar_full {
-  width: 30vw;
+  position: relative;
+  left: 25%;
+  width: 50%;
   height: 1vh;
   background-color: #fff;
   z-index: 500;
@@ -12,7 +10,6 @@
 }
 .progress_bar_done {
   height: 100%;
-  position: relative;
   background-color: #448aff;
   z-index: 1000;
 }

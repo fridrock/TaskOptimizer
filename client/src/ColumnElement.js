@@ -20,6 +20,7 @@ class ColumnElement extends Component {
     this.updateCheckBoxPost = this.updateCheckBoxPost.bind(this);
     this.deleteColumnPost = this.deleteColumnPost.bind(this);
   }
+
   async updateCheckBoxPost(checkBoxId) {
     const checkBoxIdJson = {
       checkBoxId: checkBoxId,
@@ -159,8 +160,15 @@ class ColumnElement extends Component {
       );
     });
 
+    let columnWidth = +this.props.column.columnWidth;
+
     return (
-      <div className="column_container">
+      <div
+        className="column_container"
+        style={{
+          width: columnWidth + "%",
+        }}
+      >
         <div className="column_header">
           <p className="column_name">{this.props.column.columnName}</p>
           <div className="button_container">

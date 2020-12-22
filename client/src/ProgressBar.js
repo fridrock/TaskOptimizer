@@ -7,9 +7,8 @@ class ProgressBar extends Component {
   render() {
     return (
       <div
-        className={`progress_bar_container ${
-          this.props.opened ? "" : "closed"
-        }`}
+        className={`progress_bar_container 
+         `}
       >
         <div className="progress_bar_full">
           <div
