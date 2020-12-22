@@ -20,13 +20,13 @@
   display: flex;
   flex-direction: column;
   justify-content: start;
-  background-color: #303f9f;
+  background-color: #000;
   align-items: start;
   height: 100vh;
   padding: 20px 0px 0px 13px;
   transition: transform 0.5s cubic-bezier(0, 0.52, 0, 1);
   overflow: hidden;
-  border-right: 2px solid #3f51b5;
+  border-right: 2px solid #000;
   transition-timing-function: ease-in-out;
 }
 #navigation_block a {

@@ -1,6 +1,17 @@
 body {
-  background-color: #303f9f;
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-size: 100vw auto;
+
   color: white;
+}
+.particles_container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1000;
+  width: 100vw;
+  height: 100vh;
 }
 button,
 input[type="text"] input[type="reset"],

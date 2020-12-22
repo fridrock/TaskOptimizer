@@ -1,13 +1,14 @@
 .column_form_container {
   width: 35%;
   position: absolute;
-  height: 30vh;
+  height: 40vh;
   top: 25vh;
   left: 32.5%;
   z-index: 1000;
   background-color: #fff;
   border: 10px solid #448aff;
   border-radius: 30px;
+  padding: 3vh;
 }
 .close_button {
   position: relative;
@@ -23,25 +24,30 @@
   display: none;
 }
 .column_form {
+  width: 90%;
+  height: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-around;
   flex-direction: column;
 }
 .column_form label {
-  height: 15vh;
-  margin-top: 2vh;
-  font-size: 25px;
-  color: black;
+  width: 90%;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  justify-content: start;
   flex-direction: column;
+  margin-left: 2vw;
+  align-items: center;
+}
+.column_form label p {
+  width: 100%;
+  font-size: 13px;
+  text-align: left;
+  font-weight: 500;
 }
 .column_form label input {
-  font-size: 25px;
-  margin-top: 10px;
-  border-bottom: 1px solid black;
+  width: 100%;
+  border-bottom: 2px solid #afb2b2;
 }
 .column_form label input:focus {
   border-bottom: 2px solid #303f9f;
@@ -54,9 +60,51 @@
   transition-duration: 0.3s;
   color: white;
   font-size: 20px;
-  margin-top: 40px;
+  margin-top: 1vh;
+  align-self: center;
 }
 .submit_column:hover {
   transform: scale(1.05);
   cursor: pointer;
+}
+
+#select_label {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+#select_label select {
+  margin-top: 1vh;
+}
+.help_info {
+  min-width: 20px;
+  min-height: 20px;
+  background-image: url("./img/help.png");
+  background-repeat: no-repeat;
+  margin-top: 10px;
+}
+.opened_info {
+  position: absolute;
+  z-index: 2000;
+  left: 16vw;
+  padding: 5px;
+  top: 35vh;
+  width: 15vw;
+  height: auto;
+  background-color: white;
+  border: 3px solid#448AFF;
+  border-radius: 20px;
+}
+.closed_info {
+  display: none;
+}
+#low_priority {
+  color: #484848;
+}
+#middle_priority {
+  color: #448aff;
+}
+#high_priority {
+  color: #bf360c;
 }

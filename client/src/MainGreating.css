@@ -1,15 +1,17 @@
 .main_greating_container {
   width: 100%;
-  height: 30vh;
+  height: 45vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   margin-top: 200px;
   font-size: 20px;
 }
 .main_greating_container > p {
+  margin-top: 10vh;
   font-size: 30px;
+  text-shadow: 2px 2px 2px black, 0 0 1em black;
 }
 .button_block {
   display: flex;
@@ -24,6 +26,9 @@
   .button_block {
     font-size: 0.9em;
     width: 35vw;
+  }
+  .main_greating_container > p {
+    margin-top: 0;
   }
 }
 @media (max-width: 800px) {

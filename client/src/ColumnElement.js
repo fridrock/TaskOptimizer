@@ -94,7 +94,7 @@ class ColumnElement extends Component {
     this.updateCheckBoxPost(checkBox.checkBoxId);
   }
   changeCreatoreState() {
-    if (this.state.value != "" && this.state.hasCreator) {
+    if (this.state.value !== "" && this.state.hasCreator) {
       //
       this.createCheckBoxPost();
       this.setState({

@@ -94,6 +94,8 @@ app.post("/api/columns/create", async (req, res) => {
       planId: column.planId,
       columnName: column.columnName,
       columnId: column.columnId,
+      columnPriority: column.columnPriority,
+      columnWidth: column.columnWidth,
       checkBoxes: [],
     };
     res.json(JSON.stringify(answer));

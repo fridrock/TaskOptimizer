@@ -17,6 +17,17 @@ Column.init(
       type: DataTypes.BIGINT,
       allowNull: false,
     },
+    columnPriority: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    columnWidth: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    checkBoxCount: {
+      type: DataTypes.INTEGER,
+    },
   },
   {
     sequelize: sequelizeInstance,
@@ -30,6 +41,8 @@ async function createColumn(reqBody) {
   const column = await Column.create({
     planId: reqBody.planId,
     columnName: reqBody.columnName,
+    columnWidth: reqBody.columnWidth,
+    columnPriority: reqBody.columnPriority,
   });
   await column.save();
   return column;

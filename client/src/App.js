@@ -6,6 +6,7 @@ import MainGreating from "./MainGreating";
 import Registration from "./Registration";
 import Authorisation from "./Authorisation";
 import HomeFragment from "./HomeFragment";
+import Particles from "react-particles-js";
 
 class App extends Component {
   constructor(props) {
@@ -66,6 +67,47 @@ class App extends Component {
 
     return (
       <div className="App">
+        <Particles
+          className="particles_container"
+          params={{
+            particles: {
+              number: {
+                value: 60,
+                density: {
+                  enable: true,
+                  value_area: 1500,
+                },
+              },
+              line_linked: {
+                enable: true,
+                opacity: 0.82,
+              },
+              move: {
+                direction: "center",
+                speed: 2.05,
+              },
+              size: {
+                value: 1,
+              },
+              opacity: {
+                anim: {
+                  enable: true,
+                  speed: 1,
+                  opacity_min: 0.05,
+                },
+              },
+            },
+            interactivity: {
+              modes: {
+                push: {
+                  particles_nb: 1,
+                },
+              },
+            },
+            retina_detect: true,
+          }}
+        />
+
         <Header
           dispatch={this.props.dispatch}
           opened={this.state.opened}
