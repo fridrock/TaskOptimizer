@@ -115,6 +115,7 @@ class App extends Component {
           LoggedIn={this.props.state.LoggedIn}
           changeOpened={this.changeOpened}
           userProfile={this.props.state.userProfile}
+          history={this.props.history}
         ></Header>
         <Switch>
           <Route

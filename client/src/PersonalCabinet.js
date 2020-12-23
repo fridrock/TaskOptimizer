@@ -23,6 +23,7 @@ class PersonalCabinet extends Component {
     this.setState({
       menu_opened: false,
     });
+    this.props.history.push("/maingreating");
   }
   render() {
     //TODO:rename isRegistrated on loggedIn

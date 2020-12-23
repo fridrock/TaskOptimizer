@@ -24,8 +24,8 @@ class Header extends Component {
             id="navigation_block"
             className={` ${this.props.opened ? "opened " : "closed"}`}
           >
-            <Link to="/home">Home</Link>
-            <Link to="/friends">Friends</Link>
+            <Link to="/home">Главная</Link>
+            <Link to="/friends">Друзья</Link>
           </div>
           <div className="logo_brand">
             <img src={logo}></img>
@@ -38,6 +38,7 @@ class Header extends Component {
           logoutCreator={this.props.logoutCreator}
           isRegistrated={this.props.LoggedIn}
           userProfile={this.props.userProfile}
+          history={this.props.history}
         ></PersonalCabinet>
       </div>
     );

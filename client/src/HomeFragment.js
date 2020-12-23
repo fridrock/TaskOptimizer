@@ -33,6 +33,9 @@ class HomeFragment extends Component {
         ></PlanElement>
       );
     });
+    if (planItems.length <= 0) {
+      planItems = <p className="create_advice">Создайте свой первый план</p>;
+    }
 
     return (
       <div className="main">
