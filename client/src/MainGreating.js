@@ -1,6 +1,6 @@
 import React, { Component, createRef } from "react";
 import VanillaHoverButton from "./VanillaHoverButton";
-import {Link}  from 'react-router-dom';
+import { Link } from "react-router-dom";
 import "./MainGreating.css";
 class MainGreating extends Component {
   constructor(props) {
@@ -9,8 +9,6 @@ class MainGreating extends Component {
     this.innerSide = [];
     this.containerRef = createRef();
     this.switchState = (e, inner) => {
-      console.log(e.target);
-      console.log(e.target === this.containerRef.current);
       if (!(e.target === this.containerRef.current)) {
         if (inner.length === 1) {
           this.setState({
@@ -27,17 +25,16 @@ class MainGreating extends Component {
 
   render() {
     if (this.state.isClicked) {
-      this.innerSide = [<Link to="/registration">Регистрация</Link>,<Link to="/auth">Авторизация</Link>];
+      this.innerSide = [
+        <Link to="/registration">Регистрация</Link>,
+        <Link to="/auth">Авторизация</Link>,
+      ];
     } else {
       this.innerSide = [<Link>Начать работу</Link>];
     }
     this.innerSide = this.innerSide.map((elem) => {
-     
-     
-        return <VanillaHoverButton link={elem}></VanillaHoverButton>
-     
-      
-  });
+      return <VanillaHoverButton link={elem}></VanillaHoverButton>;
+    });
     return (
       <div
         className="main_greating_container"

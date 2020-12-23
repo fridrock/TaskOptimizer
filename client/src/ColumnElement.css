@@ -1,34 +1,37 @@
 .column_container {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
+  display: grid;
+  grid-auto-rows: auto;
   background-color: #fff;
-  border: 2px solid #448aff;
-  border-radius: 10px;
-  padding-top: 10px;
+  height: auto;
   margin: 20px;
+  padding: 0;
+  border-radius: 20px;
+  padding-bottom: 5px;
 }
 .column_header {
   width: 100%;
   height: 4vh;
-  display: flex;
-  justify-content: start;
-  align-items: center;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 80% 10%;
   margin-bottom: 1%;
-  border-bottom: 2px solid #448aff;
 }
 .column_container .column_name {
-  position: relative;
-  width: 100%;
-  height: 3vh;
-  top: 11px;
-  left: 0;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 2;
   font-size: 15px;
+  padding-left: 16%;
+  text-align: center;
 }
 .add_checkbox_button {
   width: 2vw;
   height: 2vh;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 2;
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -43,21 +46,25 @@
   justify-content: start;
   flex-direction: column;
   width: 100%;
-  height: 55vh;
+  height: auto;
 }
-.checkbox_container:first-child {
-  margin-top: -200px;
-}
+
 .button_container {
-  width: 30%;
-  height: 3vh;
-  margin-top: -8%;
-  align-self: flex-end;
-  display: flex;
-  justify-content: start;
-  align-items: flex-start;
+  grid-row-start: 1;
+  padding-top: 10px;
+  grid-row-end: 2;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  align-items: center;
 }
 .delete_button {
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 2;
+  grid-column-end: 3;
   width: 2vw;
   height: 2vh;
 }

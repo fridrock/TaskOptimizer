@@ -30,16 +30,38 @@ class StateFunctions {
     let checkBoxesCount = 0;
     let doneCheckBoxes = 0;
     plan.columns.forEach((column) => {
-      checkBoxesCount += column.checkBoxes.length;
+      let columnPriority = column.columnPriority;
+      switch (columnPriority) {
+        case 1:
+          checkBoxesCount += column.checkBoxes.length;
+          break;
+        case 2:
+          checkBoxesCount += column.checkBoxes.length * 2;
+          break;
+        case 3:
+          checkBoxesCount += column.checkBoxes.length * 3;
+          break;
+      }
+
       column.checkBoxes.forEach((checkbox) => {
         if (checkbox.checkBoxDone || checkbox.checkBoxDone === 1) {
-          doneCheckBoxes++;
+          switch (columnPriority) {
+            case 1:
+              doneCheckBoxes++;
+              break;
+            case 2:
+              doneCheckBoxes += 2;
+              break;
+            case 3:
+              doneCheckBoxes += 3;
+              break;
+          }
         }
       });
     });
+
     if (doneCheckBoxes === 0) {
       plan.doneProcent = 0;
-      console.log(plan.doneProcent);
     } else {
       plan.doneProcent = Math.round((doneCheckBoxes / checkBoxesCount) * 100);
     }

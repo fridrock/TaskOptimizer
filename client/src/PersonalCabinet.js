@@ -29,7 +29,6 @@ class PersonalCabinet extends Component {
     if (this.props.isRegistrated) {
       return (
         <div className="profile_container">
-          <img className="default_user_photo" src={userPhoto}></img>
           <p>{this.props.userProfile.login}</p>
           <button
             className="profile_button"

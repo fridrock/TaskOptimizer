@@ -8,12 +8,7 @@
   margin-right: 50px;
 }
 .profile_container {
-  width: 5%;
-}
-.default_user_photo {
-  width: 30%;
-  height: auto;
-  margin: 0px 5px 0px 0px;
+  width: 3vw;
 }
 .profile_button {
   min-width: 2vw;

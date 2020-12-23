@@ -8,8 +8,14 @@ class CheckBox extends Component {
     this.props.updateCheckBox(checkBoxId);
   }
   render() {
+    let color = this.props.color;
     return (
-      <div className="checkBoxContainer">
+      <div
+        className="checkBoxContainer"
+        style={{
+          borderTop: "2px solid" + color,
+        }}
+      >
         <input
           type="checkbox"
           id="ch"

@@ -41,13 +41,14 @@
 }
 .column_form label p {
   width: 100%;
-  font-size: 13px;
+  font-size: 14.5px;
   text-align: left;
   font-weight: 500;
 }
 .column_form label input {
   width: 100%;
   border-bottom: 2px solid #afb2b2;
+  font-size: 16px;
 }
 .column_form label input:focus {
   border-bottom: 2px solid #303f9f;
@@ -87,9 +88,9 @@
 .opened_info {
   position: absolute;
   z-index: 2000;
-  left: 16vw;
+  left: 10vw;
   padding: 5px;
-  top: 35vh;
+  top: 33vh;
   width: 15vw;
   height: auto;
   background-color: white;

@@ -75,6 +75,8 @@ class AddColumnForm extends Component {
     this.props.changeModalState();
     this.setState({
       column_name: "",
+      column_width: "",
+      column_priority: "0",
     });
   }
   handleChange(e) {
@@ -128,7 +130,9 @@ class AddColumnForm extends Component {
               onChange={this.handleSelect}
               value={this.state.column_priority}
             >
-              <option disabled={true}>Выберите приоритет колонны</option>
+              <option value="0" disabled={true}>
+                Выберите приоритет колонны
+              </option>
               <option value="1" id="low_priority">
                 Низкий
               </option>

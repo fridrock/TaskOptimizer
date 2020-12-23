@@ -62,7 +62,6 @@ class ColumnElement extends Component {
     });
     const json = await resolve.json();
     const newCheckBox = await JSON.parse(json);
-    console.log(newCheckBox);
     console.log(this.props.planId);
     const saveCheckBoxAction = this.props.addCheckBoxCreator(
       newCheckBox,
@@ -70,7 +69,6 @@ class ColumnElement extends Component {
       this.props.column.columnId
     );
     this.props.dispatch(saveCheckBoxAction);
-    console.log(newCheckBox);
   }
   //TODO: refactor
   changeHasCreator() {
@@ -151,11 +149,24 @@ class ColumnElement extends Component {
   }
 
   render() {
+    let color;
+    switch (this.props.column.columnPriority) {
+      case 1:
+        color = "#8e8e8e";
+        break;
+      case 2:
+        color = "#448aff";
+        break;
+      case 3:
+        color = "#bf360c";
+        break;
+    }
     let checkBoxes = this.props.column.checkBoxes.map((checkbox) => {
       return (
         <CheckBox
           updateCheckBox={this.updateCheckBox}
           checkbox={checkbox}
+          color={color}
         ></CheckBox>
       );
     });
@@ -167,6 +178,7 @@ class ColumnElement extends Component {
         className="column_container"
         style={{
           width: columnWidth + "%",
+          border: "2px solid" + color,
         }}
       >
         <div className="column_header">
@@ -191,6 +203,7 @@ class ColumnElement extends Component {
             value={this.state.value}
             changeSubmit={this.changeSubmit}
             handleChange={this.handleChange}
+            color={color}
           ></CheckBoxCreator>
         </div>
       </div>

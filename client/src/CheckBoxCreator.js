@@ -7,11 +7,15 @@ class CheckBoxCreator extends Component {
   }
 
   render() {
+    let color = this.props.color;
     return (
       <div
         className={`checkbox_creator_container ${
           this.props.opened ? "" : "closed"
         }`}
+        style={{
+          borderTop: "2px solid" + color,
+        }}
       >
         <input
           className="checkbox_creator_input"
