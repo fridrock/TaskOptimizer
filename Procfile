@@ -1,0 +1,2 @@
+
+web: ./client npm start
