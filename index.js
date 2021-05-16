@@ -13,14 +13,6 @@ const { createCheckBox, updateCheckBox } = require("./models/CheckBox");
 connect();
 createDatabaseModels();
 
-app.use(express.static(path.join(__dirname, "client/build")));
-app.use(express.static("public"));
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
-app.use(bodyParser.json());
 //creating answer object to delete some options and create child arrays
 app.post("/api/users/auth", async (req, res) => {
   try {
@@ -142,10 +134,20 @@ app.post("/api/plans/userdata", async (req, res) => {
     console.log(e.message);
   }
 });
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
+  app.use(express.static("public"));
+  app.use(
+    bodyParser.urlencoded({
+      extended: true,
+    })
+  );
+  app.use(bodyParser.json());
+  app.get("*", (req, res, next) => {
+    res.sendFile(path.join(__dirname, "client/build", "index.html"));
+  });
+}
 // send react client with itself rounting
-app.get("*", (req, res, next) => {
-  res.sendFile(path.join(__dirname, "client/build", "index.html"));
-});
 
 // start express server on port 5000
 app.listen(5000, () => {
